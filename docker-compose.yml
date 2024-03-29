@@ -1,0 +1,23 @@
+version: '3'
+services:
+  backend:
+    build: ./RediUX-Back
+    image: rediux_backend
+    ports:
+      - "3000:3000"
+    networks:
+      - rediux-network
+
+  frontend:
+    build: ./RediUX-Front
+    image: rediux_frontend
+    ports:
+      - "8080:8080"
+    networks:
+      - rediux-network
+    depends_on:
+      - backend
+
+networks:
+  rediux-network:
+    driver: bridge
