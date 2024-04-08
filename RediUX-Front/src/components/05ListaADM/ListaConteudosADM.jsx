@@ -13,7 +13,7 @@ const ConteudoADM = () => {
 
     useEffect(
         () => {
-            axios.get("https://rediux-back-hheo.onrender.com/contents/list")
+            axios.get("http://172.26.0.2:3001/contents/list")
             .then(
                 (response)=>{
                     setConteudos(response.data)

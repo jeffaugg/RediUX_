@@ -41,7 +41,7 @@ const Cadastrar = () => {
                 const url = await getDownloadURL(imgRef);
                 setImgUrl(url);
                 const conteudo = { titulo, autor, descricao, link, tags, midia, imgUrl:url };
-                await axios.post("https://rediux-back-hheo.onrender.com/contents/register", conteudo);
+                await axios.post("http://172.26.0.2:3001/contents/register", conteudo);
             
                 alert("Conteudo " + titulo + " adicionado com sucesso!");
                 console.log(conteudo);

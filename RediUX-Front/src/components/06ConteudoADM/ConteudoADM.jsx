@@ -26,7 +26,7 @@ const ConteudoADM = () => {
 
     useEffect(
         () => {
-            axios.get(`https://rediux-back-hheo.onrender.com/contents/retrieve/${id}`)
+            axios.get(`http://172.26.0.2:3001/contents/retrieve/${id}`)
                 .then(
                     (response) => {
                         setTitulo(response.data.titulo)

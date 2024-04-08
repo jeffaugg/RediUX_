@@ -20,7 +20,7 @@ const SearchResults = () => {
 
   useEffect(() => {
     axios
-      .get(`https://rediux-back-hheo.onrender.com/contents/search?term=${searchTerm}&media=${searchMedia}`)
+      .get(`http://172.26.0.2:3001/contents/search?term=${searchTerm}&media=${searchMedia}`)
       .then((response) => {
         setSearchResults(response.data);
       })
