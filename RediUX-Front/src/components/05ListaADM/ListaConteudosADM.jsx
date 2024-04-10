@@ -13,7 +13,7 @@ const ConteudoADM = () => {
 
     useEffect(
         () => {
-            axios.get("http://172.26.0.2:3001/contents/list")
+            axios.get("http://localhost:3000/contents/list")
             .then(
                 (response)=>{
                     setConteudos(response.data)
@@ -40,7 +40,7 @@ const ConteudoADM = () => {
 
     function excluirConteudo(id) {
         if(window.confirm("Deseja Excluir? " + id)){
-            axios.delete(`https://rediux-back-hheo.onrender.com/contents/delete/${id}`)
+            axios.delete(`http://localhost:3000/contents/delete/${id}`)
             .then(
                 (response)=>{
                     const resultado = conteudos.filter( conteudo => conteudo._id !== id)

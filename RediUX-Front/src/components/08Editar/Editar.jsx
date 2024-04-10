@@ -55,7 +55,7 @@ const Editar = () => {
     
         const conteudo = { titulo, autor, descricao, link, tags, midia, imgUrl: updatedImageUrl };
         try {
-            await axios.put(`http://172.26.0.2:3001/contents/update/${id}`, conteudo)
+            await axios.put(`http://localhost:3000/contents/update/${id}`, conteudo)
             .then(
                 (response) => {
                     alert(`Conteúdo ${response.data._id} atualizado com sucesso!`)
@@ -70,7 +70,7 @@ const Editar = () => {
 
     useEffect(
         () => {
-            axios.get(`http://172.26.0.2:3001/contents/retrieve/${id}`)
+            axios.get(`http://localhost:3000/contents/retrieve/${id}`)
                 .then(
                     (response) => {
                         setTitulo(response.data.titulo)
