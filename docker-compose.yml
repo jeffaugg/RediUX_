@@ -1,6 +1,7 @@
 version: '3'
 services:
   backend:
+    container_name: back-rediux
     build: ./RediUX-Back
     image: rediux_backend
     ports:
@@ -9,10 +10,11 @@ services:
       - rediux-network
 
   frontend:
+    container_name: front-rediux
     build: ./RediUX-Front
     image: rediux_frontend
     ports:
-      - "8080:8080"
+      - "8080:3000"
     networks:
       - rediux-network
     depends_on:

@@ -20,7 +20,7 @@ const SearchResults = () => {
 
   useEffect(() => {
     axios
-      .get(`http://backend:3001/contents/search?term=${searchTerm}&media=${searchMedia}`)
+      .get(`http://localhost:3000/contents/search?term=${searchTerm}&media=${searchMedia}`)
       .then((response) => {
         setSearchResults(response.data);
       })

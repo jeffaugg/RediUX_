@@ -10,6 +10,8 @@ COPY package*.json ./
 # Limpe o cache do npm
 RUN npm cache clean --force
 
+RUN rm -rf node_modules package-lock.json
+
 # Instale as dependências
 RUN npm install
 
@@ -19,8 +21,10 @@ COPY . .
 # Construa o aplicativo para produção
 RUN npm run build
 
+
+
 # Exponha a porta que o frontend escuta
-EXPOSE 8080
+# EXPOSE 8080
 
 # Comando para servir o aplicativo construído
 CMD ["npm", "start"]
