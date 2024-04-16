@@ -1,42 +1,41 @@
-import { Box, Button, Stack,  Container, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Typography } from "@mui/material"
-import axios from "axios"
-import { ArrowBackIosNew } from "@mui/icons-material"
-import { Link } from "react-router-dom"
-import { useEffect } from "react"
-import { useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import Tollbaradm from "../00TollbarADM/TollbarADM"
-import { MuiFileInput } from "mui-file-input"
-import { imageDb } from "../../firebase"
-import { getDownloadURL, listAll, ref, uploadBytes, uploadBytesResumable } from "@firebase/storage"
-import { v4 } from "uuid"
+import { Box, Button, Stack, Container, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Typography } from "@mui/material";
+import { ArrowBackIosNew } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Tollbaradm from "../00TollbarADM/TollbarADM";
+import { MuiFileInput } from "mui-file-input";
+import { imageDb } from "../../firebase";
+import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
+import { v4 } from "uuid";
+import {atualizarConteudo, getConteudo } from "../../environment/Api";
+
 
 const Editar = () => {
-
-    const [titulo, setTitulo] = useState("")
-    const [autor, setAutor] = useState("")
-    const [descricao, setDescricao] = useState("")
-    const [link, setLink] = useState("")
-    const [tags, setTags] = useState({ carreira: false, fundamentosUX: false, designInteracao: false, UI: false, arquitetura: false })
-    const [midia, setMidia] = useState({ livro: false, artigo: false, video: false, podcast: false })
-    const [imgUrl, setImgUrl] = useState(null)
-    const [file, setFile] = useState(null)
+    const [titulo, setTitulo] = useState("");
+    const [autor, setAutor] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [link, setLink] = useState("");
+    const [tags, setTags] = useState({ carreira: false, fundamentosUX: false, designInteracao: false, UI: false, arquitetura: false });
+    const [midia, setMidia] = useState({ livro: false, artigo: false, video: false, podcast: false });
+    const [imgUrl, setImgUrl] = useState(null);
+    const [file, setFile] = useState(null);
     const [loadingImage, setLoadingImage] = useState(false);
 
-    const { carreira, fundamentosUX, designInteracao, UI, arquitetura } = tags
-    const { livro, artigo, video, podcast } = midia
-    const { id } = useParams()
-
-    const navigate = useNavigate()
+    const { carreira, fundamentosUX, designInteracao, UI, arquitetura } = tags;
+    const { livro, artigo, video, podcast } = midia;
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     const handleChange = (newFile) => {
         setFile(newFile);
     };
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         let updatedImageUrl = imgUrl;
-    
+
         if (file) {
             
             const imgRef = ref(imageDb, `files/${v4()}`);
@@ -52,61 +51,47 @@ const Editar = () => {
                 setLoadingImage(false);
             }
         }
-    
+
         const conteudo = { titulo, autor, descricao, link, tags, midia, imgUrl: updatedImageUrl };
         try {
-            await axios.put(`http://localhost:3000/contents/update/${id}`, conteudo)
-            .then(
-                (response) => {
-                    alert(`Conteúdo ${response.data._id} atualizado com sucesso!`)
-                    navigate("/ADM/ListaConteudos");
-                }
-            )
-            .catch(error => console.log(error));
+            await atualizarConteudo(id, conteudo);
+            navigate("/ADM/ListaConteudos");
         } catch (error) {
             console.error("Erro ao atualizar o conteúdo: ", error);
         }
     };
 
-    useEffect(
-        () => {
-            axios.get(`http://localhost:3000/contents/retrieve/${id}`)
-                .then(
-                    (response) => {
-                        setTitulo(response.data.titulo)
-                        setAutor(response.data.author)
-                        setDescricao(response.data.description)
-                        setLink(response.data.link)
-                        setTags(response.data.tags)
-                        setMidia(response.data.midia)
-                        setImgUrl(response.data.imgUrl)
-                        console.log(response.data);
-                    }
-                )
-                .catch(error => console.log(error))
-        }
-        ,
-        [id]
-    )
+    useEffect(() => {
+        const fetchConteudo = async () => {
+            try {
+                const conteudo = await getConteudo(id);
+                setTitulo(conteudo.titulo);
+                setAutor(conteudo.autor);
+                setDescricao(conteudo.descricao);
+                setLink(conteudo.link);
+                setTags(conteudo.tags);
+                setMidia(conteudo.midia);
+                setImgUrl(conteudo.imgUrl);
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
-    
+        fetchConteudo();
+    }, [id]);
 
     function handleCheckBoxTags(event) {
-        setTags(
-            {
-                ...tags,
-                [event.target.name]: event.target.checked
-            }
-        )
+        setTags({
+            ...tags,
+            [event.target.name]: event.target.checked,
+        });
     }
 
     function handleCheckBoxMidia(event) {
-        setMidia(
-            {
-                ...midia,
-                [event.target.name]: event.target.checked
-            }
-        )
+        setMidia({
+            ...midia,
+            [event.target.name]: event.target.checked,
+        });
     }
 
     return (
@@ -297,5 +282,6 @@ const Editar = () => {
             </Container>
         </>
     )
-}
-export default Editar
+};
+
+export default Editar;
