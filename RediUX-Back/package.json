@@ -9,7 +9,7 @@
     "clean": "rimraf dist-server",
     "build": "npm-run-all clean transpile",
     "dev": "NODE_ENV=development npm-run-all build server",
-    "prod": "NODE_ENV=production npm-run-all build server",    
+    "prod": "NODE_ENV=production npm-run-all build server",
     "watch:dev": "nodemon"
   },
   "dependencies": {
@@ -24,7 +24,6 @@
     "jade": "^1.9.2",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.22",
-    "npm-run-all": "^4.1.5",
     "pug": "^3.0.2",
     "rimraf": "^5.0.1"
   },
@@ -44,5 +43,8 @@
       "*.test.js",
       "*.spec.js"
     ]
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }

@@ -5,8 +5,6 @@
 # RediUX - Repositório Digital de User Experience
 
 
-
-
 ## Sobre o Projeto
 O RediUX é uma aplicação web projetada para o compartilhamento de conteúdo educacional na área de User Experience (UX). Este repositório digital serve como uma plataforma centralizada onde materiais didáticos, como aulas, artigos, postagens e diversos tipos de mídia, são disponibilizados para enriquecer o processo de aprendizagem dos alunos. A iniciativa visa facilitar o acesso a recursos educacionais de qualidade, proporcionando uma experiência de aprendizado mais dinâmica e interativa.
 
