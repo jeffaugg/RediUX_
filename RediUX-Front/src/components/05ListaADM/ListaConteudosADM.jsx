@@ -1,4 +1,4 @@
-import {Button, Box, Container, InputAdornment, TextField, Typography, FormControl, InputLabel, Select, MenuItem, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
+import {Button, Box, Container, InputAdornment, TextField, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { Delete, Edit } from "@mui/icons-material";
@@ -30,7 +30,6 @@ const ConteudoADM = () => {
         const searchTerm = search.trim();
         navigate(`/results?term=${searchTerm}`);
       };
-
 
     const [search, setSearch] = useState("");
 
@@ -151,7 +150,6 @@ const ConteudoADM = () => {
                                         </TableCell>
                                         <TableCell align="left">{conteudo.autor}</TableCell>
                                         <TableCell align="left">{conteudo.descricao}</TableCell>
-                                        {/* <TableCell align="left">{conteudo.link}</TableCell> */}
                                         <TableCell align="center">
                                             <Link to={`/ADM/Editar/${conteudo._id}`}>
                                                 <IconButton aria-label="editar"><Edit /></IconButton>

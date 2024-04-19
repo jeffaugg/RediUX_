@@ -32,7 +32,6 @@ export const searchConteudo = async (searchTerm, searchMedia) => {
     }
 };
 
-
 export default {
     getConteudo,
     atualizarConteudo,
