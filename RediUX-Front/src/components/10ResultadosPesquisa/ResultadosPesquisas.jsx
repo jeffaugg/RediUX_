@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { ArrowBackIosNew, Book } from "@mui/icons-material";
 import folder from "./folder2.svg"
 import erroimagem from "./Search engines-bro.svg"
+import { searchConteudo } from "../../environment/Api";
 
 
 
@@ -19,14 +20,15 @@ const SearchResults = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/contents/search?term=${searchTerm}&media=${searchMedia}`)
-      .then((response) => {
-        setSearchResults(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const fetchData = async () => {
+      try {
+        const results = await searchConteudo(searchTerm, searchMedia);
+        setSearchResults(results);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+      fetchData();
   }, [searchTerm, searchMedia]);
 
 

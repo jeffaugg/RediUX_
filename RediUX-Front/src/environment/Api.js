@@ -22,7 +22,19 @@ export const atualizarConteudo = async (id, conteudo) => {
     }
 };
 
+export const searchConteudo = async (searchTerm, searchMedia) => {
+    try {
+        const response = await axios.get(`${baseURL}/search?term=${searchTerm}&media=${searchMedia}`);
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao buscar o conteúdo: ", error);
+        throw error;
+    }
+};
+
+
 export default {
     getConteudo,
     atualizarConteudo,
+    searchConteudo
 };
