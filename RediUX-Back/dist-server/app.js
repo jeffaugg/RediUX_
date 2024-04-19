@@ -13,19 +13,14 @@ var _index = _interopRequireDefault(require("./routes/index"));
 var _users = _interopRequireDefault(require("./routes/users"));
 var _contents = _interopRequireDefault(require("./routes/contents"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-// var createError = require('http-errors');
-// var express = require('express');
-// var path = require('path');
-// var cookieParser = require('cookie-parser');
-// var logger = require('morgan');
-
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-
 var app = (0, _express["default"])();
 
-// view engine setup
+// Definindo o mecanismo de visualização como Pug
 app.set('view engine', 'pug');
+
+// Definindo o diretório de visualizações
+var viewsDirectory = _path["default"].join(__dirname, '..', 'server', 'views');
+app.set('views', viewsDirectory);
 app.use((0, _morgan["default"])('dev'));
 app.use(_express["default"].json());
 app.use(_express["default"].urlencoded({
@@ -33,8 +28,8 @@ app.use(_express["default"].urlencoded({
 }));
 app.use((0, _cookieParser["default"])());
 app.use(_express["default"]["static"](_path["default"].join(__dirname, '../public')));
-var viewsDirectory = process.env.npm_config_local_prefix + "\\server\\views";
-app.set('views', viewsDirectory);
+
+// Configurando cabeçalhos CORS
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
