@@ -17,6 +17,7 @@ import ConteudoADM from "./components/06ConteudoADM/ConteudoADM";
 import Cadastrar from "./components/07Cadastar/Cadastrar";
 import Editar from "./components/08Editar/Editar";
 import ResultadosPesquisas from "./components/10ResultadosPesquisa/ResultadosPesquisas"
+import ResetPassword from "./components/11ResetPassword/ResetPassword";
 import { useGlobalState } from "./components/04Login/GlobalStateContext";
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
       <Route element={<Artigo />} path="/Artigos" />
       <Route element={<Podcast />} path="/Podcasts" />
       <Route element={<Video />} path="/Videos" />
+
+      <Route element={<ResetPassword />} path="/reset-password" />
 
       <Route
         path="/ADM/Login"
