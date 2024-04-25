@@ -63,7 +63,7 @@ const Artigo = () => {
                         }}
                     />
 
-                    <FormControl vairant="primary">
+                    <FormControl variant="outlined">
                         <InputLabel id="demo-simple-select-filled-label">Tags</InputLabel>
                         <Select
                             labelId="demo-simple-select-filled-label"
