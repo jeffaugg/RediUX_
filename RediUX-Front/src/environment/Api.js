@@ -4,7 +4,7 @@ import axios from "axios";
 const baseURL = "http://localhost:3000/contents"; 
 // const baseURL = "https://rediux-back-developer.onrender.com/contents";
 
-export const getConteudo = async (id) => {
+export const getContent = async (id) => {
     try {
         const response = await axios.get(`${baseURL}/retrieve/${id}`);
         return response.data;
@@ -14,7 +14,7 @@ export const getConteudo = async (id) => {
     }
 };
 
-export const atualizarConteudo = async (id, conteudo) => {
+export const updateContent = async (id, conteudo) => {
     try {
         const response = await axios.put(`${baseURL}/update/${id}`, conteudo);
         return response.data;
@@ -24,7 +24,7 @@ export const atualizarConteudo = async (id, conteudo) => {
     }
 };
 
-export const searchConteudo = async (searchTerm, searchMedia) => {
+export const searchContent = async (searchTerm, searchMedia) => {
     try {
         const response = await axios.get(`${baseURL}/search?term=${searchTerm}&media=${searchMedia}`);
         return response.data;
@@ -44,10 +44,43 @@ export const resetPassword = async (email) => {
     }
 };
 
+export const createContent = async (conteudo) => {
+    try {
+        const response = await axios.post(`${baseURL}/register`, conteudo);
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao cadastrar o conteúdo: ", error);
+        throw error;
+    }
+};
+
+export const getContentList = async () => {
+    try {
+        const response = await axios.get(`${baseURL}/list`);
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao buscar os conteúdos: ", error);
+        throw error;
+    }
+};
+
+export const deleteContent = async (id) => {
+    try {
+        const response = await axios.delete(`${baseURL}/delete/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao excluir o conteúdo: ", error);
+        throw error;
+    }
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    getConteudo,
-    atualizarConteudo,
-    searchConteudo,
+    getContent,
+    updateContent,
+    searchContent,
     resetPassword,
+    createContent,
+    getContentList,
+    deleteContent,
 };

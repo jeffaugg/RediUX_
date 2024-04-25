@@ -1,11 +1,11 @@
 import { Box, Button, Stack,  Container, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Typography } from "@mui/material"
-import axios from "axios"
 import { ArrowBackIosNew } from "@mui/icons-material"
 import { Link } from "react-router-dom"
 import { useEffect } from "react"
 import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import Tollbaradm from "../00TollbarADM/TollbarADM"
+import {updateContent, getContent } from "../../environment/Api";
 
 const Conteudo = () => {
 
@@ -23,37 +23,35 @@ const Conteudo = () => {
     const { id } = useParams()
     const navigate = useNavigate()
 
-    useEffect(
-        () => {
-            axios.get(`http://localhost:3000/contents/retrieve/${id}`)
-                .then(
-                    (response) => {
-                        setTitulo(response.data.titulo)
-                        setAutor(response.data.autor)
-                        setDescricao(response.data.descricao)
-                        setLink(response.data.link)
-                        setTags(response.data.tags)
-                        setMidia(response.data.midia)
-                        setImgUrl(response.data.imgUrl)
-                    }
-                )
-                .catch(error => console.log(error))
+    useEffect(() => {
+        async function fetchConteudo() {
+            try {
+                const response = await getContent(id);
+                setTitulo(response.titulo);
+                setAutor(response.autor);
+                setDescricao(response.descricao);
+                setLink(response.link);
+                setTags(response.tags);
+                setMidia(response.midia);
+                setImgUrl(response.imgUrl);
+            } catch (error) {
+                console.error("Erro ao buscar o conteúdo: ", error);
+            }
         }
-        ,
-        []
-    )
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        const conteudo = { titulo, autor, descricao, link, tags, midia, imgUrl }
-        axios.put(`http://localhost:3000/contents/update/${id}`, conteudo)
-            .then(
-                (response) => {
-                    alert(`Conteúdo  ${response.data._id} atualizado com sucesso!`)
-                    navigate("/ADM/ListaConteudos")
-                }
-            )
-            .catch(error => console.log(error))
+        fetchConteudo();
+    }, [id]);
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        const conteudo = { titulo, autor, descricao, link, tags, midia, imgUrl };
+        try {
+            const response = await updateContent(id, conteudo);
+            alert(`Conteúdo ${response._id} atualizado com sucesso!`);
+            navigate("/ADM/ListaConteudos");
+        } catch (error) {
+            console.error("Erro ao atualizar o conteúdo: ", error);
+        }
     }
 
     function handleCheckBoxTags(event) {

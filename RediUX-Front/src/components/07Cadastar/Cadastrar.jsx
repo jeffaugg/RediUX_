@@ -3,12 +3,12 @@ import { Box, Button, Container, Checkbox, FormControl, FormControlLabel, FormGr
 import { MuiFileInput } from "mui-file-input"
 import { ArrowBackIosNew } from "@mui/icons-material"
 import { Link } from "react-router-dom"
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { imageDb } from "../../firebase"
 import { getDownloadURL, listAll, ref, uploadBytes, uploadBytesResumable } from "@firebase/storage"
 import { v4 } from "uuid"
+import { createContent } from "../../environment/Api";
 
 const Cadastrar = () => {
 
@@ -41,7 +41,7 @@ const Cadastrar = () => {
                 const url = await getDownloadURL(imgRef);
                 setImgUrl(url);
                 const conteudo = { titulo, autor, descricao, link, tags, midia, imgUrl:url };
-                await axios.post("http://localhost:3000/contents/register", conteudo);
+                await createContent(conteudo); 
             
                 alert("Conteudo " + titulo + " adicionado com sucesso!");
                 console.log(conteudo);

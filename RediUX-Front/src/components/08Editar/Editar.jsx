@@ -9,7 +9,7 @@ import { MuiFileInput } from "mui-file-input";
 import { imageDb } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
 import { v4 } from "uuid";
-import {atualizarConteudo, getConteudo } from "../../environment/Api";
+import {updateContent, getContent } from "../../environment/Api";
 
 
 const Editar = () => {
@@ -54,7 +54,7 @@ const Editar = () => {
 
         const conteudo = { titulo, autor, descricao, link, tags, midia, imgUrl: updatedImageUrl };
         try {
-            await atualizarConteudo(id, conteudo);
+            await updateContent(id, conteudo);
             navigate("/ADM/ListaConteudos");
         } catch (error) {
             console.error("Erro ao atualizar o conteúdo: ", error);
@@ -64,7 +64,7 @@ const Editar = () => {
     useEffect(() => {
         const fetchConteudo = async () => {
             try {
-                const conteudo = await getConteudo(id);
+                const conteudo = await getContent(id);
                 setTitulo(conteudo.titulo);
                 setAutor(conteudo.autor);
                 setDescricao(conteudo.descricao);

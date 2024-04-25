@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Tollbar from "../00ToolbarU/Toolbar";
 import { Container, Typography, Button, Box, TextField, InputAdornment, FormControl, InputLabel, Select, MenuItem, Card, CardMedia, CardContent, Chip, CardActions, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -8,7 +7,7 @@ import { Link } from "react-router-dom";
 import { ArrowBackIosNew, Book } from "@mui/icons-material";
 import folder from "./folder2.svg"
 import erroimagem from "./Search engines-bro.svg"
-import { searchConteudo } from "../../environment/Api";
+import { searchContent } from "../../environment/Api";
 
 
 
@@ -22,7 +21,7 @@ const SearchResults = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const results = await searchConteudo(searchTerm, searchMedia);
+        const results = await searchContent(searchTerm, searchMedia);
         setSearchResults(results);
       } catch (error) {
         console.error(error);
