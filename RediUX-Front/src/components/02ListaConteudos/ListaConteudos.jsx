@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 const ListaConteudos = () => {
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
-    
 
     const handleChange = (event) => {
         setSearch(event.target.value);
@@ -22,11 +21,17 @@ const ListaConteudos = () => {
         setTag(event.target.value);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            handleSubmit(event);
+        }
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const searchTerm = search.trim();
         navigate(`/results?term=${searchTerm}`);
-      };
+    };
 
     return (
         <>
@@ -72,14 +77,15 @@ const ListaConteudos = () => {
                         label="Pesquisar Conteúdo"
                         value={search}
                         onChange={handleChange}
+                        onKeyDown={handleKeyPress}
                         sx={{ width: 860 }}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <Button
-                                            sx={{ height: 55 }}
-                                            onClick={handleSubmit}
-                                        >
+                                        sx={{ height: 55 }}
+                                        onClick={handleSubmit}
+                                    >
                                         <SearchIcon />
                                     </Button>
                                 </InputAdornment>
@@ -87,7 +93,7 @@ const ListaConteudos = () => {
                         }}
                     />
 
-                    <FormControl vairant="primary">
+                    <FormControl variant="outlined">
                         <InputLabel id="demo-simple-select-filled-label">Tags</InputLabel>
                         <Select
                             labelId="demo-simple-select-filled-label"

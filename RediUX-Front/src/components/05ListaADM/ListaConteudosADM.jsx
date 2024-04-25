@@ -31,6 +31,12 @@ const ConteudoADM = () => {
         setSearch(event.target.value);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            handleSubmit(event);
+        }
+    };
+
     function excluirConteudo(id) {
         if (window.confirm("Deseja Excluir? " + id)) {
             deleteContent(id)
@@ -75,6 +81,7 @@ const ConteudoADM = () => {
                         label="Pesquisar Conteúdo"
                         value={search}
                         onChange={handleChange}
+                        onKeyDown={handleKeyPress}
                         sx={{ width: 650 }}
                         InputProps={{
                             endAdornment: (

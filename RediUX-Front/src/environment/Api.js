@@ -1,8 +1,8 @@
 import axios from "axios";
 
 
-//const baseURL = "http://localhost:3000/contents"; 
-const baseURL = "https://rediux-back-developer.onrender.com/contents";
+const baseURL = "http://localhost:3000/contents"; 
+//const baseURL = "https://rediux-back-developer.onrender.com/contents";
 
 export const getContent = async (id) => {
     try {

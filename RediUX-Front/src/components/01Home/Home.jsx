@@ -35,6 +35,11 @@ const Home = () => {
         setTag(event.target.value);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            handleSubmit(event);
+        }
+    };
 
     return (
         <>
@@ -64,24 +69,23 @@ const Home = () => {
                         label="Pesquisar Conteúdo"
                         value={search}
                         onChange={handleChange}
+                        onKeyDown={handleKeyPress}
                         sx={{ width: 600 }}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <Link to="/Pesquisa">
                                         <Button
                                             sx={{ height: 55 }}
                                             onClick={handleSubmit}
                                         >
                                             <SearchIcon />
                                         </Button>
-                                    </Link>
                                 </InputAdornment>
                             ),
                         }}
                     />
 
-                    <FormControl vairant="primary">
+                    <FormControl variant="outlined">
                         <InputLabel id="demo-simple-select-filled-label">Tags</InputLabel>
                         <Select
                             labelId="demo-simple-select-filled-label"
