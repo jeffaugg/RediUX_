@@ -32,18 +32,36 @@ const Cadastrar = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const selectedTags = Object.values(tags);
+        const atLeastOneTagSelected = selectedTags.includes(true);
+
+        const selectedMedia = Object.values(midia);
+        const atLeastOneMediaSelected = selectedMedia.includes(true);
+
+        if (!atLeastOneTagSelected) {
+            alert("Selecione pelo menos uma tag.");
+            return;
+        }
+
+        if (!atLeastOneMediaSelected) {
+            alert("Selecione pelo menos uma mídia.");
+            return;
+        }
+
         if (file) {
+
             const imgRef = ref(imageDb, `files/${v4()}`);
 
             try {
                 setLoadingImage(true);
-                await uploadBytes(imgRef, file)
+                await uploadBytes(imgRef, file);
                 const url = await getDownloadURL(imgRef);
                 setImgUrl(url);
-                const conteudo = { titulo, autor, descricao, link, tags, midia, imgUrl:url };
-                await createContent(conteudo); 
-            
-                alert("Conteudo " + titulo + " adicionado com sucesso!");
+                const conteudo = { titulo, autor, descricao, link, tags, midia, imgUrl: url };
+                await createContent(conteudo);
+
+                alert("Conteúdo " + titulo + " adicionado com sucesso!");
                 console.log(conteudo);
                 navigate("/ADM/ListaConteudos");
             } catch (error) {
@@ -52,7 +70,7 @@ const Cadastrar = () => {
                 setLoadingImage(false);
             }
         } else {
-            
+            alert("Por favor, selecione uma imagem para a capa do conteúdo.");
             console.error("Nenhum arquivo selecionado para upload");
         }
     };
@@ -188,7 +206,7 @@ const Cadastrar = () => {
                             my: 2,
                         }}
                     >
-                        <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard">
+                        <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard" required>
                             <FormLabel component="legend" sx={{ fontSize: 12, mb: 2 }}>Tags</FormLabel>
                             <FormGroup>
                                 <FormControlLabel control={<Checkbox checked={carreira} name="carreira" onChange={handleCheckBoxTags} />} label="Carreira" />
@@ -210,7 +228,7 @@ const Cadastrar = () => {
                             my: 2,
                         }}
                     >
-                        <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard">
+                        <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard" required>
                             <FormLabel component="legend" sx={{ fontSize: 12, mb: 2 }}>Tipo de Mídia</FormLabel>
                             <FormGroup>
                                 <FormControlLabel control={<Checkbox checked={livro} name="livro" onChange={handleCheckBoxMidia} />} label="Livro" />

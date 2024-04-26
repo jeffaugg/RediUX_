@@ -36,6 +36,22 @@ const Editar = () => {
         event.preventDefault();
         let updatedImageUrl = imgUrl;
 
+        const selectedTags = Object.values(tags);
+        const atLeastOneTagSelected = selectedTags.includes(true);
+
+        const selectedMedia = Object.values(midia);
+        const atLeastOneMediaSelected = selectedMedia.includes(true);
+
+        if (!atLeastOneTagSelected) {
+            alert("Selecione pelo menos uma tag.");
+            return;
+        }
+
+        if (!atLeastOneMediaSelected) {
+            alert("Selecione pelo menos uma mídia.");
+            return;
+        }
+
         if (file) {
             
             const imgRef = ref(imageDb, `files/${v4()}`);
@@ -194,7 +210,7 @@ const Editar = () => {
 
 
 
-                    <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard">
+                    <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard" required>
                         <FormLabel component="legend" sx={{ fontSize: 12, mb: 2 }}>Tags</FormLabel>
                         <FormGroup>
                             <FormControlLabel control={<Checkbox checked={carreira} name="carreira" onChange={handleCheckBoxTags} />} label="Carreira" />
@@ -218,7 +234,7 @@ const Editar = () => {
                         }}
                     >
 
-                    <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard">
+                    <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard" required>
                         <FormLabel component="legend" sx={{ fontSize: 12, mb: 2 }}>Tipo de Mídia</FormLabel>
                         <FormGroup>
                             <FormControlLabel control={<Checkbox checked={livro} name="livro" onChange={handleCheckBoxMidia} />} label="Livro" />
