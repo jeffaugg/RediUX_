@@ -3,10 +3,10 @@ import { InsertDriveFileOutlined, InsertLink, List, PersonOutline, ArrowBackIosN
 import folder from "./folder.svg"
 import { Link } from "react-router-dom";
 import Tollbaradm from "../00TollbarADM/TollbarADM";
-import axios from "axios";
 import { useEffect } from "react"
 import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import api from "../../environment/Api";
 
 const ConteudoADM = () => {
 
@@ -24,25 +24,23 @@ const ConteudoADM = () => {
     const navigate = useNavigate()
 
 
-    useEffect(
-        () => {
-            axios.get(`http://localhost:3000/contents/retrieve/${id}`)
-                .then(
-                    (response) => {
-                        setTitulo(response.data.titulo)
-                        setAutor(response.data.autor)
-                        setDescricao(response.data.descricao)
-                        setLink(response.data.link)
-                        setTags(response.data.tags)
-                        setMidia(response.data.midia)
-                        setImgUrl(response.data.imgUrl)
-                    }
-                )
-                .catch(error => console.log(error))
-        }
-        ,
-        []
-    )
+    useEffect(() => {
+        const fetchConteudo = async () => {
+            try {
+                const response = await api.getContent(id);
+                setTitulo(response.titulo);
+                setAutor(response.autor);
+                setDescricao(response.descricao);
+                setLink(response.link);
+                setTags(response.tags);
+                setMidia(response.midia);
+                setImgUrl(response.imgUrl);
+            } catch (error) {
+                console.error("Erro ao buscar conteúdo: ", error);
+            }
+        };
+        fetchConteudo();
+    }, [id]);
 
 
 

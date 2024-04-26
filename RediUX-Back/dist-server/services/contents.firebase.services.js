@@ -33,7 +33,7 @@ var ContentServices = /*#__PURE__*/function () {
             link = _content$data.link,
             autor = _content$data.autor,
             imgUrl = _content$data.imgUrl,
-            file = _content$data.file
+            file = _content$data.file;
           contents.push({
             _id: _id,
             tags: tags,
@@ -60,11 +60,11 @@ var ContentServices = /*#__PURE__*/function () {
           titulo: content.data().titulo,
           tags: content.data().tags,
           midia: content.data().midia,
-          description: content.data().descricao,
+          descricao: content.data().descricao,
           link: content.data().link,
-          author: content.data().autor,
+          autor: content.data().autor,
           imgUrl: content.data().imgUrl,
-          file: content.data().file,
+          file: content.data().file
         };
         response.json(res);
       })["catch"](function (error) {
@@ -96,7 +96,8 @@ var ContentServices = /*#__PURE__*/function () {
             descricao = _content$data2.descricao,
             link = _content$data2.link,
             autor = _content$data2.autor,
-            imgUrl = _content$data2.imgUrl;
+            imgUrl = _content$data2.imgUrl,
+            file = _content$data2.file;
           if (titulo.toLowerCase().includes(searchTerm) && contentHasMedia(midia)) {
             contents.push({
               _id: _id,
@@ -106,7 +107,8 @@ var ContentServices = /*#__PURE__*/function () {
               descricao: descricao,
               link: link,
               autor: autor,
-              imgUrl: imgUrl
+              imgUrl: imgUrl,
+              file: file
             });
           }
         });

@@ -1,36 +1,29 @@
-import {Button, Box, Container, InputAdornment, TextField, Typography, FormControl, InputLabel, Select, MenuItem, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
+import { Button, Box, Container, InputAdornment, TextField, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { Delete, Edit } from "@mui/icons-material";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Tollbaradm from "../00TollbarADM/TollbarADM";
-import axios from "axios";
+import { deleteContent, getContentList } from "../../environment/Api";
 
 const ConteudoADM = () => {
 
     const [conteudos, setConteudos] = useState([]);
     const navigate = useNavigate()
 
-    useEffect(
-        () => {
-            axios.get("http://localhost:3000/contents/list")
-            .then(
-                (response)=>{
-                    setConteudos(response.data)
-                }
-            )
-            .catch(error=>console.log("error"))
-        }
-        ,
-        []
-    )
+    useEffect(() => {
+        getContentList()
+            .then((data) => {
+                setConteudos(data);
+            })
+            .catch((error) => console.error("Erro ao buscar os conteúdos: ", error));
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const searchTerm = search.trim();
         navigate(`/results?term=${searchTerm}`);
-      };
-
+    };
 
     const [search, setSearch] = useState("");
 
@@ -38,16 +31,20 @@ const ConteudoADM = () => {
         setSearch(event.target.value);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            handleSubmit(event);
+        }
+    };
+
     function excluirConteudo(id) {
-        if(window.confirm("Deseja Excluir? " + id)){
-            axios.delete(`http://localhost:3000/contents/delete/${id}`)
-            .then(
-                (response)=>{
-                    const resultado = conteudos.filter( conteudo => conteudo._id !== id)
-                    setConteudos(resultado)
-                }
-            )
-            .catch(error=>console.log(error))
+        if (window.confirm("Deseja Excluir? " + id)) {
+            deleteContent(id)
+                .then(() => {
+                    const resultado = conteudos.filter((conteudo) => conteudo._id !== id);
+                    setConteudos(resultado);
+                })
+                .catch((error) => console.error("Erro ao excluir o conteúdo: ", error));
         }
     }
 
@@ -84,13 +81,14 @@ const ConteudoADM = () => {
                         label="Pesquisar Conteúdo"
                         value={search}
                         onChange={handleChange}
+                        onKeyDown={handleKeyPress}
                         sx={{ width: 650 }}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <Button
-                                            sx={{ height: 55 }}
-                                            onClick={handleSubmit}
+                                        sx={{ height: 55 }}
+                                        onClick={handleSubmit}
                                     >
                                         <SearchIcon />
                                     </Button>
@@ -151,7 +149,6 @@ const ConteudoADM = () => {
                                         </TableCell>
                                         <TableCell align="left">{conteudo.autor}</TableCell>
                                         <TableCell align="left">{conteudo.descricao}</TableCell>
-                                        {/* <TableCell align="left">{conteudo.link}</TableCell> */}
                                         <TableCell align="center">
                                             <Link to={`/ADM/Editar/${conteudo._id}`}>
                                                 <IconButton aria-label="editar"><Edit /></IconButton>

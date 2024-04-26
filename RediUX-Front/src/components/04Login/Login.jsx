@@ -129,6 +129,12 @@ const Login = () => {
                 />
 
                 <Button
+                    onClick={() => window.location.href = "/reset-password"}
+                >
+                    Esqueci minha senha
+                </Button>
+
+                <Button
                     onClick={signIn}
 
                     sx={{

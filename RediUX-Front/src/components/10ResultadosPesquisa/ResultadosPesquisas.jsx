@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Tollbar from "../00ToolbarU/Toolbar";
 import { Container, Typography, Button, Box, TextField, InputAdornment, FormControl, InputLabel, Select, MenuItem, Card, CardMedia, CardContent, Chip, CardActions, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -8,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ArrowBackIosNew, Book } from "@mui/icons-material";
 import folder from "./folder2.svg"
 import erroimagem from "./Search engines-bro.svg"
+import { searchContent } from "../../environment/Api";
 
 
 
@@ -19,14 +19,15 @@ const SearchResults = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/contents/search?term=${searchTerm}&media=${searchMedia}`)
-      .then((response) => {
-        setSearchResults(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const fetchData = async () => {
+      try {
+        const results = await searchContent(searchTerm, searchMedia);
+        setSearchResults(results);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+      fetchData();
   }, [searchTerm, searchMedia]);
 
 
@@ -59,7 +60,12 @@ const SearchResults = () => {
       }
     }
   }
-  console.log(searchResults);
+  
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+        handleSubmit(event);
+    }
+};
 
   return (
     <>
@@ -92,26 +98,27 @@ const SearchResults = () => {
             label="Pesquisar Conteúdo"
             value={search}
             onChange={handleChange}
+            onKeyDown={handleKeyPress}
             sx={{
               width: "100%"
             }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Link to="/Pesquisa">
+                  {/* <Link to="/Pesquisa"> */}
                     <Button
                       sx={{ height: 55 }}
                       onClick={handleSubmit}
                     >
                       <SearchIcon />
                     </Button>
-                  </Link>
+                  {/* </Link> */}
                 </InputAdornment>
               ),
             }}
           />
 
-          <FormControl vairant="primary">
+          <FormControl variant="outlined">
             <InputLabel id="demo-simple-select-filled-label">Tags</InputLabel>
             <Select
               labelId="demo-simple-select-filled-label"

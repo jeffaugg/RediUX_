@@ -41,9 +41,9 @@ class ContentServices {
                         titulo: content.data().titulo,
                         tags: content.data().tags,
                         midia: content.data().midia,
-                        description: content.data().descricao,
+                        descricao: content.data().descricao,
                         link: content.data().link,
-                        author: content.data().autor,
+                        autor: content.data().autor,
                         imgUrl: content.data().imgUrl,
                         file: content.data().file,
                     }
