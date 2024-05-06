@@ -248,6 +248,9 @@ const Cadastrar = () => {
                             my: 2,
                             backgroundColor: "#f0f0f0",
                         }}
+                        inputProps={{
+                            accept: "image/*", // Aceita qualquer extensão de imagem
+                        }}
                     />
 
                     <Box sx={{
