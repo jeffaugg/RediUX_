@@ -1,5 +1,5 @@
 import { Box, Toolbar} from "@mui/material";
-import Logo from "./logo-sml.svg";
+import Logo from "../../assets/logo-sml.svg";
 
 const Tollbar = () => {
     return (

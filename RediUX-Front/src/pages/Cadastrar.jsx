@@ -1,14 +1,14 @@
-import Tollbaradm from "../00TollbarADM/TollbarADM"
+import Tollbaradm from "../components/00TollbarADM/TollbarADM"
 import { Box, Button, Container, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Typography, Stack } from "@mui/material"
 import { MuiFileInput } from "mui-file-input"
 import { ArrowBackIosNew } from "@mui/icons-material"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { imageDb } from "../../firebase"
+import { imageDb } from "../firebase"
 import { getDownloadURL, listAll, ref, uploadBytes, uploadBytesResumable } from "@firebase/storage"
 import { v4 } from "uuid"
-import { createContent } from "../../environment/Api";
+import { createContent } from "../environment/Api";
 
 const Cadastrar = () => {
 
