@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { imageDb } from "../firebase"
-import { getDownloadURL, listAll, ref, uploadBytes, uploadBytesResumable } from "@firebase/storage"
+import { getDownloadURL, listAll, ref, uploadBytes } from "@firebase/storage"
 import { v4 } from "uuid"
 import { createContent } from "../environment/Api";
 
@@ -23,7 +23,7 @@ const Cadastrar = () => {
     const { livro, artigo, video, podcast } = midia
 
     const [file, setFile] = useState(null)
-    const [imgUrl, setImgUrl] = useState(null)
+    const [, setImgUrl] = useState(null)
     const [loadingImage, setLoadingImage] = useState(false);
 
     const handleChange = (newFile) => {
