@@ -1,6 +1,5 @@
 import { Button, Box, Container, InputAdornment, TextField, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from "@mui/icons-material/Clear";
 import { useEffect, useState } from "react";
 import { Delete, Edit } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -12,7 +11,7 @@ const ConteudoADM = () => {
     const [conteudos, setConteudos] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [originalContents, setoriginalContents] = useState([]);
-    const [searchPerformed, setSearchPerformed] = useState(false);
+    const [, setSearchPerformed] = useState(false);
     const [searchResultTerm, setSearchResultTerm] = useState("");
     const [showSearchResult, setShowSearchResult] = useState(false);
 
@@ -59,11 +58,6 @@ const ConteudoADM = () => {
         setShowSearchResult(false);
     };
 
-    const handleKeyPress = (event) => {
-        if (event.key === "Enter") {
-            handleSubmit(event);
-        }
-    };
 
     function excluirConteudo(id) {
         if (window.confirm("Deseja Excluir? " + id)) {

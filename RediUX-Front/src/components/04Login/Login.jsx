@@ -66,7 +66,7 @@ const Login = () => {
             estaAutenticado: true,
           }));
         }
-      }, []);
+      }, [setGlobalState]);
 
     return (
         <Container
