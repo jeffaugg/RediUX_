@@ -1,9 +1,6 @@
-// import Tollbar from "./components/00ToolbarU/Toolbar";
-// import Tollbaradm from "./components/00TollbarADM/TollbarADM";n
+import { Navigate, Route, Routes } from "react-router-dom";
 
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-
-import Home from "./components/01Home/Home";
+import Home from "./pages/Home";
 import ListaConteudos from "./components/02ListaConteudos/ListaConteudos";
 import Conteudo from "./components/03Conteudo/Conteudo";
 import Livro from "./components/09PagMidias/Livro";
@@ -14,11 +11,12 @@ import Video from "./components/09PagMidias/Video";
 import Login from "./components/04Login/Login";
 import ListaConteudosADM from "./components/05ListaADM/ListaConteudosADM";
 import ConteudoADM from "./components/06ConteudoADM/ConteudoADM";
-import Cadastrar from "./components/07Cadastar/Cadastrar";
-import Editar from "./components/08Editar/Editar";
+import Cadastrar from "./pages/Cadastrar";
+import Editar from "./pages/Editar";
 import ResultadosPesquisas from "./components/10ResultadosPesquisa/ResultadosPesquisas"
 import ResetPassword from "./components/11ResetPassword/ResetPassword";
 import { useGlobalState } from "./components/04Login/GlobalStateContext";
+import About from "./pages/About";
 
 function App() {
 
@@ -34,6 +32,7 @@ function App() {
       <Route element={<Artigo />} path="/Artigos" />
       <Route element={<Podcast />} path="/Podcasts" />
       <Route element={<Video />} path="/Videos" />
+      <Route element={<About />} path="/about" />
 
       <Route element={<ResetPassword />} path="/reset-password" />
 

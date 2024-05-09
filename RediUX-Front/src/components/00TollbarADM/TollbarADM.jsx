@@ -1,5 +1,5 @@
 import { Button, Toolbar } from "@mui/material";
-import Logo from "./logo-sml.svg";
+import Logo from "../../assets/logo-sml.svg";
 import { Logout } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 

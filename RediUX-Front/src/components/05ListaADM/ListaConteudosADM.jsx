@@ -1,34 +1,62 @@
 import { Button, Box, Container, InputAdornment, TextField, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useEffect, useState } from "react";
 import { Delete, Edit } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Tollbaradm from "../00TollbarADM/TollbarADM";
 import { deleteContent, getContentList } from "../../environment/Api";
 
 const ConteudoADM = () => {
 
     const [conteudos, setConteudos] = useState([]);
-    const navigate = useNavigate()
+    const [searchTerm, setSearchTerm] = useState("");
+    const [originalContents, setoriginalContents] = useState([]);
+    const [searchPerformed, setSearchPerformed] = useState(false);
+    const [searchResultTerm, setSearchResultTerm] = useState("");
+    const [showSearchResult, setShowSearchResult] = useState(false);
 
     useEffect(() => {
+        handleClearSearch();
+    }, []);
+
+    const handleSubmit = () => {
+        const trimmedSearch = searchTerm.trim();
+
+        if (trimmedSearch === "") {
+            return;
+        }
+
+        const filteredConteudos = originalContents.filter(conteudo =>
+            conteudo.titulo.toLowerCase().includes(trimmedSearch.toLowerCase()) ||
+            conteudo.autor.toLowerCase().includes(trimmedSearch.toLowerCase()) ||
+            conteudo.descricao.toLowerCase().includes(trimmedSearch.toLowerCase())
+        );
+        setConteudos(filteredConteudos);
+
+        if (filteredConteudos.length === 0) {
+            alert("Nenhum resultado encontrado.");
+            handleClearSearch();
+        }
+        setSearchTerm("")
+        setSearchResultTerm(trimmedSearch);
+        setSearchPerformed(true);
+        setShowSearchResult(filteredConteudos.length > 0);
+    };
+
+    const handleChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleClearSearch = () => {
+        setSearchTerm("");
         getContentList()
             .then((data) => {
                 setConteudos(data);
+                setoriginalContents(data);
             })
             .catch((error) => console.error("Erro ao buscar os conteúdos: ", error));
-    }, []);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const searchTerm = search.trim();
-        navigate(`/results?term=${searchTerm}`);
-    };
-
-    const [search, setSearch] = useState("");
-
-    const handleChange = (event) => {
-        setSearch(event.target.value);
+        setShowSearchResult(false);
     };
 
     const handleKeyPress = (event) => {
@@ -43,6 +71,7 @@ const ConteudoADM = () => {
                 .then(() => {
                     const resultado = conteudos.filter((conteudo) => conteudo._id !== id);
                     setConteudos(resultado);
+                    setoriginalContents(resultado);
                 })
                 .catch((error) => console.error("Erro ao excluir o conteúdo: ", error));
         }
@@ -79,9 +108,13 @@ const ConteudoADM = () => {
                         id="search"
                         type="search"
                         label="Pesquisar Conteúdo"
-                        value={search}
+                        value={searchTerm}
                         onChange={handleChange}
-                        onKeyDown={handleKeyPress}
+                        onKeyDown={(event) => {
+                            if (event.key === "Enter") {
+                                handleSubmit();
+                            }
+                        }}
                         sx={{ width: 650 }}
                         InputProps={{
                             endAdornment: (
@@ -117,23 +150,69 @@ const ConteudoADM = () => {
                     </Link>
                 </Box>
 
+                {showSearchResult && (
+                    <Container
+                        sx={{
+                            display: "flex",
+                            marginTop: 3,
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                        }}
+                    >
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                            <SearchIcon
+                                sx={{
+                                    color: "#6C757D",
+                                    mr: 1,
+                                    fontSize: 35,
+                                }}
+                            />
+                            <Typography
+                                component="h1"
+                                variant="h4"
+                                fontWeight={500}
+                                sx={{
+                                    color: "#6C757D",
+                                }}
+                            >
+                                Resultado da busca: "{searchResultTerm}"
+                            </Typography>
+                        </Box>
+                        <Button
+                            variant="outlined"
+                            sx={{
+                                boxShadow: "none",
+                                borderColor: "#DC3545",
+                                color: "#DC3545",
+                                '&:hover': {
+                                    backgroundColor: "#DC3545",
+                                    borderColor: "#DC3545",
+                                    color: "#F5f5f5",
+                                    boxShadow: "none",
+                                }
+                            }}
+                            onClick={handleClearSearch}
+                        >
+                            Limpar Busca
+                        </Button>
+                    </Container>
+                )}
+
                 <Container
                     sx={{
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        my: 5,
+                        visibility: conteudos.length === 0 ? "hidden" : "visible",
                     }}
                 >
-
-                    <TableContainer component={Paper}>
+                    <TableContainer component={Paper} sx={{ marginTop: 2 }}>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Título</TableCell>
                                     <TableCell align="left">Autor</TableCell>
                                     <TableCell align="left">Descrição</TableCell>
-                                    {/* <TableCell align="left">URL</TableCell> */}
                                     <TableCell align="left">Editar</TableCell>
                                     <TableCell align="left">Excluir</TableCell>
                                 </TableRow>
@@ -166,4 +245,4 @@ const ConteudoADM = () => {
     )
 }
 
-export default ConteudoADM
+export default ConteudoADM;

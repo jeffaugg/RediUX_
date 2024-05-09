@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Tollbaradm from "../00TollbarADM/TollbarADM";
+import Tollbaradm from "../components/00TollbarADM/TollbarADM";
 import { MuiFileInput } from "mui-file-input";
-import { imageDb } from "../../firebase";
+import { imageDb } from "../firebase";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
 import { v4 } from "uuid";
-import {updateContent, getContent } from "../../environment/Api";
+import {updateContent, getContent } from "../environment/Api";
 
 
 const Editar = () => {
@@ -35,6 +35,22 @@ const Editar = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         let updatedImageUrl = imgUrl;
+
+        const selectedTags = Object.values(tags);
+        const atLeastOneTagSelected = selectedTags.includes(true);
+
+        const selectedMedia = Object.values(midia);
+        const atLeastOneMediaSelected = selectedMedia.includes(true);
+
+        if (!atLeastOneTagSelected) {
+            alert("Selecione pelo menos uma tag.");
+            return;
+        }
+
+        if (!atLeastOneMediaSelected) {
+            alert("Selecione pelo menos uma mídia.");
+            return;
+        }
 
         if (file) {
             
@@ -194,7 +210,7 @@ const Editar = () => {
 
 
 
-                    <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard">
+                    <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard" required>
                         <FormLabel component="legend" sx={{ fontSize: 12, mb: 2 }}>Tags</FormLabel>
                         <FormGroup>
                             <FormControlLabel control={<Checkbox checked={carreira} name="carreira" onChange={handleCheckBoxTags} />} label="Carreira" />
@@ -218,7 +234,7 @@ const Editar = () => {
                         }}
                     >
 
-                    <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard">
+                    <FormControl sx={{ mt: 2, ml: 2 }} component="fieldset" variant="standard" required>
                         <FormLabel component="legend" sx={{ fontSize: 12, mb: 2 }}>Tipo de Mídia</FormLabel>
                         <FormGroup>
                             <FormControlLabel control={<Checkbox checked={livro} name="livro" onChange={handleCheckBoxMidia} />} label="Livro" />

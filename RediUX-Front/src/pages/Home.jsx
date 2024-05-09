@@ -1,10 +1,10 @@
 import { Button, Box, Container, InputAdornment, TextField, FormControl, InputLabel, Select, MenuItem, Typography, Divider } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-import Logo from "./logo.svg";
+import Logo from "../assets/logo.svg";
 import { Article, Book, Mic, SmartDisplay } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Tollbar from "../00ToolbarU/Toolbar";
+import Tollbar from "../components/00ToolbarU/Toolbar";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -221,6 +221,30 @@ const Home = () => {
                     </Link>
                 </Box>
             </Container>
+
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    mt: 25,
+                    mb: 5,
+                    '& > :not(style)': { m: 2 }, // Adiciona espaçamento entre os elementos filhos
+                }}
+            >
+                <Link to="/ADM/login">
+                    <Button>
+                        Administração
+                    </Button>
+                </Link>
+
+                <Link to="/about">
+                    <Button> 
+                        Sobre
+                    </Button>
+                </Link>
+
+            </Box>
+
         </>
     );
 }
