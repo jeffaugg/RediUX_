@@ -4,7 +4,7 @@ import { useState } from "react";
 import Logo from "../assets/logo.svg";
 import { Article, Book, Mic, SmartDisplay } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Tollbar from "../components/00ToolbarU/Toolbar";
+import Tollbar from "../components/ToolbarU/Toolbar";
 
 const Home = () => {
     const [search, setSearch] = useState("");

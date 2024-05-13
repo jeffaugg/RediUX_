@@ -1,4 +1,4 @@
-import Tollbaradm from "../components/00TollbarADM/TollbarADM"
+import Tollbaradm from "../components/TollbarADM/TollbarADM"
 import { Box, Button, Container, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Typography, Stack } from "@mui/material"
 import { MuiFileInput } from "mui-file-input"
 import { ArrowBackIosNew } from "@mui/icons-material"

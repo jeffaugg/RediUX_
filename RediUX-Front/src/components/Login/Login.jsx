@@ -1,6 +1,6 @@
 import { Container, Box, Button, TextField } from "@mui/material"
-import Logo from "./logo.svg"
-import Ilustracao from "./ilustracao.svg"
+import Logo from "../../assets/logo.svg"
+import Ilustracao from "../../assets/ilustracao.svg"
 import {signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
 import { useGlobalState } from "./GlobalStateContext"

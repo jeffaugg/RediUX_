@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Tollbaradm from "../components/00TollbarADM/TollbarADM";
+import Tollbaradm from "../components/TollbarADM/TollbarADM";
 import { MuiFileInput } from "mui-file-input";
 import { imageDb } from "../firebase";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";

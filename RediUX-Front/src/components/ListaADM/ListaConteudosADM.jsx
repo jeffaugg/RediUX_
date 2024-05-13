@@ -1,9 +1,11 @@
-import { Button, Box, Container, InputAdornment, TextField, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
+import { 
+    Button, Box, Container, InputAdornment, TextField, Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton 
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { Delete, Edit } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Tollbaradm from "../00TollbarADM/TollbarADM";
+import Tollbaradm from "../TollbarADM/TollbarADM";
 import { deleteContent, getContentList } from "../../environment/Api";
 
 const ConteudoADM = () => {
