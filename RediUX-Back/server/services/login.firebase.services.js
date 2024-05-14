@@ -1,7 +1,3 @@
-const users = [
-    {login: "edonog", password: "509157"},
-];
-
 class LoginService {
     // O método de login pega um data como parametro que é a requisição do servidor. Depois é percorrido ovetor de usuário para verificar se os dados, passados pela requisição, estão certos. Se estiverem, retorna true, se não, retorna false.
     static login(data) {
