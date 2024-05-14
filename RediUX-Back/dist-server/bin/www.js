@@ -1,12 +1,3 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
-// var app = require('../app');
-// var debug = require('debug')('crud-express-firebase:server');
-// var http = require('http');
 "use strict";
 
 var _app = _interopRequireDefault(require("../app"));
@@ -78,11 +69,6 @@ function onError(error) {
       throw error;
   }
 }
-
-/**
- * Event listener for HTTP server "listening" event.
- */
-
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;

@@ -7,10 +7,6 @@ exports["default"] = void 0;
 var _app = require("firebase/app");
 var _firestore = require("firebase/firestore");
 var _storage = require("firebase/storage");
-// Import the functions you need from the SDKs you need
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyC8gog_UfFiU7Cap7qiptKLVBI89X_hM6I",
