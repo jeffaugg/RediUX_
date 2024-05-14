@@ -1,7 +1,7 @@
 import { Button, Toolbar } from "@mui/material";
 import Logo from "../../assets/logo-sml.svg";
 import { Logout } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Tollbaradm = () => {
   const handleLogout = () => {

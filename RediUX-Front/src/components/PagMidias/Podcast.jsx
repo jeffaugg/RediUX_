@@ -1,12 +1,12 @@
 import { Button, Box, Container, InputAdornment, TextField, FormControl, InputLabel, Select, MenuItem, Typography, Card, CardMedia, CardContent, CardActions, Chip, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-import folder from "./folder.png"
+import folder from "../../assets/folder.svg"
 import { ArrowBackIos } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Tollbar from "../00ToolbarU/Toolbar";
+import Tollbar from "../ToolbarU/Toolbar";
 
-const Livro = () => {
+const Podcast = () => {
     const [search, setSearch] = useState("");
 
     const handleChange = (event) => {
@@ -22,7 +22,6 @@ const Livro = () => {
     return (
         <>
             <Tollbar />
-            
             <Container>
                 <Box
                     sx={{
@@ -96,7 +95,7 @@ const Livro = () => {
                             mt: 5,
                             mb: 2,
                         }}>
-                        Livros
+                        Podcasts
                     </Typography>
                     <Box
                         sx={{
@@ -255,8 +254,7 @@ const Livro = () => {
                 </Container>
             </Container>
         </>
-
     )
 }
 
-export default Livro
+export default Podcast

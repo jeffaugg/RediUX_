@@ -1,12 +1,12 @@
 import { Button, Box, Container, InputAdornment, TextField, FormControl, InputLabel, Select, MenuItem, Typography, Card, CardMedia, CardContent, CardActions, Chip, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-import folder from "./folder.png"
+import folder from "../../assets/folder.svg"
 import { ArrowBackIos } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Tollbar from "../00ToolbarU/Toolbar";
+import Tollbar from "../ToolbarU/Toolbar";
 
-const Video = () => {
+const Livro = () => {
     const [search, setSearch] = useState("");
 
     const handleChange = (event) => {
@@ -96,7 +96,7 @@ const Video = () => {
                             mt: 5,
                             mb: 2,
                         }}>
-                        Vídeos
+                        Livros
                     </Typography>
                     <Box
                         sx={{
@@ -255,7 +255,8 @@ const Video = () => {
                 </Container>
             </Container>
         </>
+
     )
 }
 
-export default Video
+export default Livro

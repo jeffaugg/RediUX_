@@ -1,21 +1,21 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
-import ListaConteudos from "./components/02ListaConteudos/ListaConteudos";
-import Conteudo from "./components/03Conteudo/Conteudo";
-import Livro from "./components/09PagMidias/Livro";
-import Artigo from "./components/09PagMidias/Artigo";
-import Podcast from "./components/09PagMidias/Podcast";
-import Video from "./components/09PagMidias/Video";
+import ListaConteudos from "./components/ListaConteudos/ListaConteudos";
+import Conteudo from "./components/Conteudo/Conteudo";
+import Livro from "./components/PagMidias/Livro";
+import Artigo from "./components/PagMidias/Artigo";
+import Podcast from "./components/PagMidias/Podcast";
+import Video from "./components/PagMidias/Video";
 
-import Login from "./components/04Login/Login";
-import ListaConteudosADM from "./components/05ListaADM/ListaConteudosADM";
-import ConteudoADM from "./components/06ConteudoADM/ConteudoADM";
+import Login from "./components/Login/Login";
+import ListaConteudosADM from "./components/ListaADM/ListaConteudosADM";
+import ConteudoADM from "./components/ConteudoADM/ConteudoADM";
 import Cadastrar from "./pages/Cadastrar";
 import Editar from "./pages/Editar";
-import ResultadosPesquisas from "./components/10ResultadosPesquisa/ResultadosPesquisas"
-import ResetPassword from "./components/11ResetPassword/ResetPassword";
-import { useGlobalState } from "./components/04Login/GlobalStateContext";
+import ResultadosPesquisas from "./components/ResultadosPesquisa/ResultadosPesquisas"
+import ResetPassword from "./components/ResetPassword/ResetPassword";
+import { useGlobalState } from "./components/Login/GlobalStateContext";
 import About from "./pages/About";
 
 function App() {

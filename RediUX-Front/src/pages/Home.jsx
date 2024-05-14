@@ -4,21 +4,15 @@ import { useState } from "react";
 import Logo from "../assets/logo.svg";
 import { Article, Book, Mic, SmartDisplay } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Tollbar from "../components/00ToolbarU/Toolbar";
-import { useNavigate } from "react-router-dom";
+import Tollbar from "../components/ToolbarU/Toolbar";
 
 const Home = () => {
     const [search, setSearch] = useState("");
-    const navigate = useNavigate();
-    const [midia, setMidia] = useState({ livro: false, artigo: false, video: false, podcast: false })
+    const [, setMidia] = useState({ livro: false, artigo: false, video: false, podcast: false })
 
     const handleChange = (event) => {
         setSearch(event.target.value);
     };
-
-    const handleMidiaChange = (event) => {
-        setMidia(event.target.value);
-      };
       
       const handleSubmit = (event) => {
         event.preventDefault();

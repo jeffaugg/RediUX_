@@ -1,15 +1,13 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Tollbar from "../00ToolbarU/Toolbar";
+import Tollbar from "../ToolbarU/Toolbar";
 import { Container, Typography, Button, Box, TextField, InputAdornment, FormControl, InputLabel, Select, MenuItem, Card, CardMedia, CardContent, Chip, CardActions, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import { ArrowBackIosNew, Book } from "@mui/icons-material";
-import folder from "./folder2.svg"
-import erroimagem from "./Search engines-bro.svg"
+import folder from "../../assets/folder2.svg"
+import erroimagem from "../../assets/Search engines-bro.svg"
 import { searchContent } from "../../environment/Api";
-
-
 
 const SearchResults = () => {
   const location = useLocation();

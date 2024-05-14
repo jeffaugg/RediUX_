@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { useEffect } from "react"
 import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import Tollbaradm from "../00TollbarADM/TollbarADM"
+import Tollbaradm from "../TollbarADM/TollbarADM"
 import {updateContent, getContent } from "../../environment/Api";
 
 const Conteudo = () => {

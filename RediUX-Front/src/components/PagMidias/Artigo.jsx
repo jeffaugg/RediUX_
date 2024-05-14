@@ -1,12 +1,12 @@
 import { Button, Box, Container, InputAdornment, TextField, FormControl, InputLabel, Select, MenuItem, Typography, Card, CardMedia, CardContent, CardActions, Chip, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-import folder from "./folder.png"
+import folder from "../../assets/folder.svg"
 import { ArrowBackIos } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Tollbar from "../00ToolbarU/Toolbar";
+import Tollbar from "../ToolbarU/Toolbar";
 
-const Podcast = () => {
+const Artigo = () => {
     const [search, setSearch] = useState("");
 
     const handleChange = (event) => {
@@ -22,6 +22,7 @@ const Podcast = () => {
     return (
         <>
             <Tollbar />
+
             <Container>
                 <Box
                     sx={{
@@ -95,7 +96,7 @@ const Podcast = () => {
                             mt: 5,
                             mb: 2,
                         }}>
-                        Podcasts
+                        Artigos
                     </Typography>
                     <Box
                         sx={{
@@ -257,4 +258,4 @@ const Podcast = () => {
     )
 }
 
-export default Podcast
+export default Artigo

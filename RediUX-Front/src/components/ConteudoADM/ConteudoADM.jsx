@@ -1,11 +1,11 @@
 import { Box, Chip, Container, Button, Typography, Stack } from "@mui/material";
 import { InsertDriveFileOutlined, InsertLink, List, PersonOutline, ArrowBackIosNew } from "@mui/icons-material";
-import folder from "./folder.svg"
+import folder from "../../assets/folder.svg"
 import { Link } from "react-router-dom";
-import Tollbaradm from "../00TollbarADM/TollbarADM";
+import Tollbaradm from "../TollbarADM/TollbarADM";
 import { useEffect } from "react"
 import { useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import api from "../../environment/Api";
 
 const ConteudoADM = () => {
@@ -14,15 +14,10 @@ const ConteudoADM = () => {
     const [autor, setAutor] = useState("")
     const [descricao, setDescricao] = useState("")
     const [link, setLink] = useState("")
-    const [tags, setTags] = useState({ carreira: false, fundamentosUX: false, designInteracao: false, UI: false, arquitetura: false })
-    const [midia, setMidia] = useState({ livro: false, artigo: false, video: false, podcast: false })
-    const [imgUrl, setImgUrl] = useState([])
-
-    const { carreira, fundamentosUX, designInteracao, UI, arquitetura } = tags
-    const { livro, artigo, video, podcast } = midia
+    const [, setTags] = useState({ carreira: false, fundamentosUX: false, designInteracao: false, UI: false, arquitetura: false })
+    const [, setMidia] = useState({ livro: false, artigo: false, video: false, podcast: false })
+    const [, setImgUrl] = useState([])
     const { id } = useParams()
-    const navigate = useNavigate()
-
 
     useEffect(() => {
         const fetchConteudo = async () => {
@@ -41,8 +36,6 @@ const ConteudoADM = () => {
         };
         fetchConteudo();
     }, [id]);
-
-
 
     return (
         <>
