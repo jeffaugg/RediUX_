@@ -2,37 +2,80 @@
   <img src="https://raw.githubusercontent.com/RediUX/RediUX/8a699d5e7859c1cd5d53c3a241a5bb358cd431ce/assets/favicon.svg" alt="Logo do RediUX">
 </p>
 
-# RediUX - Repositório Digital de User Experience
+<p align="center">
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
+</p>
 
+## ️📖 Sobre o Projeto
 
-## Sobre o Projeto
-O RediUX é uma aplicação web projetada para o compartilhamento de conteúdo educacional na área de User Experience (UX). Este repositório digital serve como uma plataforma centralizada onde materiais didáticos, como aulas, artigos, postagens e diversos tipos de mídia, são disponibilizados para enriquecer o processo de aprendizagem dos alunos. A iniciativa visa facilitar o acesso a recursos educacionais de qualidade, proporcionando uma experiência de aprendizado mais dinâmica e interativa.
+O RediUX é uma aplicação web projetada para o compartilhamento de conteúdo educacional na área de User Experience (UX). Este repositório digital serve como uma plataforma centralizada onde materiais didáticos, como aulas, artigos, postagens e diversos tipos de mídia, são disponibilizados para enriquecer o processo de aprendizagem dos alunos.
 
-## Desenvolvedores e Responsabilidades
-- **[Luiz Eduardo](https://github.com/Luiz-Eduardo-BL)**: Como Tech Lead e Desenvolvedor, Luiz Eduardo é o principal responsável pela condução técnica do projeto, garantindo as melhores práticas de desenvolvimento e a integração eficiente entre a equipe.
-- **[Lucas Amorim](https://linkedin.com/in/lxcasamorim)**: Atuando como Desenvolvedor, Lucas Amorim desempenha um papel crucial na implementação de funcionalidades, colaborando ativamente no ciclo de vida do desenvolvimento de software.
+## 🧑🏾‍💻 Desenvolvedores e Responsabilidades
 
-## Tecnologias Utilizadas
-- **JavaScript**: A espinha dorsal do desenvolvimento do RediUX, com Node.js empregado no BackEnd e React no FrontEnd, proporcionando uma experiência de usuário fluida e responsiva.
-- **Docker**: Essencial para a criação e gerenciamento dos ambientes de desenvolvimento e produção, garantindo consistência e eficiência operacional.
+- **[Luiz Eduardo](https://github.com/Luiz-Eduardo-BL)**: Tech Lead e Desenvolvedor
+- **[Lucas Amorim](https://linkedin.com/in/lxcasamorim)**: Desenvolvedor
 
-## Como Rodar o Projeto
+## 🛠️ Tecnologias Utilizadas
+
+- **JavaScript**: Node.js no BackEnd e React no FrontEnd
+- **Docker**: Para criação e gerenciamento dos ambientes de desenvolvimento e produção
+
+## ▶️ Como Rodar o Projeto
+
 Para iniciar sua jornada com o RediUX, siga os passos abaixo:
 
-1. Clone o repositório com o comando: `git clone https://github.com/RediUX/RediUX_.git`.
-2. Construa o ambiente utilizando Docker com: `docker-compose build`.
-3. Inicie os serviços em modo 'detached' com: `docker-compose up -d`.
-4. Verifique os contêineres ativos com: `docker ps`.
-5. Acesse o projeto localmente via `localhost:8080`.
-6. Em caso de alterações no código, reinicie os serviços com: `docker-compose up -d`. Um novo build será necessário somente se houver mudanças nas configurações do Docker ou nas dependências que exijam reconstrução do contêiner.
+1. Clone o repositório com o comando: 
+
+``` shell
+git clone https://github.com/RediUX/RediUX_.git
+```
+
+2. Construa o ambiente utilizando Docker com: 
+
+```shell
+docker-compose build
+```
+
+3. Inicie os serviços em modo 'detached' com: 
+
+```shell
+docker-compose up -d
+```
+
+4. Verifique os contêineres ativos com: 
+
+```shell
+docker ps
+```
+
+5. Acesse o projeto localmente via 
+
+```shell
+localhost:8080
+```
+
+6. Em caso de alterações no código, reinicie os serviços com: 
+
+```shell
+docker-compose up -d
+```
+
+Um novo build será necessário somente se houver mudanças nas configurações do Docker ou nas dependências que exijam reconstrução do contêiner.
 
 Siga os passos com atenção para assegurar a correta configuração do projeto.
 
-## Como Contribuir
-Para contribuir com o RediUX, adote os padrões de commits definidos em [Padrões de Commits](https://github.com/RediUX/Padroes-de-Commits), mantendo a consistência e clareza no histórico de desenvolvimento do projeto.
+## 📑 Documentação Importante
 
-## Branches
-- `main`: A branch principal que mantém o código estável e pronto para produção.
-- `developer`: A branch destinada ao desenvolvimento e testes, onde as novas funcionalidades são integradas antes de serem mescladas à `main`.
+- **Código de Conduta:** [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md)
+- **Guia de Contribuição:** [CONTRIBUTING](CONTRIBUTING.md)
+- **Licença de Uso:** [LICENSE](LICENSE.md)
+- **Segurança:** [SECURITY](SECURITY.md)
+- **Template de Pull Request:** [PULL_REQUEST_TEMPLATE](.github/PULL_REQUEST_TEMPLATE.md)
+- **Template de Issue:** [ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE.md)
+
+## 📌 Branches
+
+- `main`: Código estável e pronto para produção.
+- `developer`: Desenvolvimento e testes.
 
 Contribua para o RediUX e ajude a moldar o futuro do aprendizado em User Experience!
