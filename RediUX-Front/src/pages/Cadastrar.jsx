@@ -5,7 +5,7 @@ import { ArrowBackIosNew } from "@mui/icons-material"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { imageDb } from "../firebase"
+import { imageDb } from "../config/firebase"
 import { getDownloadURL, listAll, ref, uploadBytes } from "@firebase/storage"
 import { v4 } from "uuid"
 import { createContent } from "../environment/Api";

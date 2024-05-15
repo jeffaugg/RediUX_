@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Tollbaradm from "../components/TollbarADM/TollbarADM";
 import { MuiFileInput } from "mui-file-input";
-import { imageDb } from "../firebase";
+import { imageDb } from "../config/firebase";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
 import { v4 } from "uuid";
 import {updateContent, getContent } from "../environment/Api";
