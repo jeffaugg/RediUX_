@@ -1,3 +1,8 @@
+---
+name: Issue Custom
+about: Custom Template RediUX
+---
+
 # Issue Template
 
 ## Description
