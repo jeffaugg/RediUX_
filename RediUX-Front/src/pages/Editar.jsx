@@ -1,15 +1,16 @@
 import { Box, Button, Stack, Container, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Typography } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import Tollbaradm from "../components/TollbarADM/TollbarADM";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+
 import { MuiFileInput } from "mui-file-input";
 import { imageDb } from "../config/firebase";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
 import { v4 } from "uuid";
 import {updateContent, getContent } from "../environment/Api";
+
+import CustomToolBar from "../components/CustomToolBar/CustomToolBar";
+import LogoImgSml from "../assets/logo-sml.svg";
 
 
 const Editar = () => {
@@ -112,7 +113,11 @@ const Editar = () => {
 
     return (
         <>
-            <Tollbaradm />
+            <CustomToolBar isADM>
+                <a href="/">
+                    <img src={LogoImgSml} height={38} alt="logo-sml" />
+                </a>
+            </CustomToolBar>
 
             <Container
                 sx={{

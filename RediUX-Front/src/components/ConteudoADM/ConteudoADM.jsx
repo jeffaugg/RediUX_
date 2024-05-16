@@ -2,9 +2,9 @@ import { Box, Chip, Container, Button, Typography, Stack } from "@mui/material";
 import { InsertDriveFileOutlined, InsertLink, List, PersonOutline, ArrowBackIosNew } from "@mui/icons-material";
 import folder from "../../assets/folder.svg"
 import { Link } from "react-router-dom";
-import Tollbaradm from "../TollbarADM/TollbarADM";
-import { useEffect } from "react"
-import { useState } from "react"
+import CustomToolBar from "../CustomToolBar/CustomToolBar";
+import LogoImgSml from "../../assets/logo-sml.svg";
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import api from "../../environment/Api";
 
@@ -39,7 +39,11 @@ const ConteudoADM = () => {
 
     return (
         <>
-            <Tollbaradm />
+            <CustomToolBar isADM>
+                <a href="/">
+                    <img src={LogoImgSml} height={38} alt="logo-sml" />
+                </a>
+            </CustomToolBar>
 
             <Container>
                 <Box

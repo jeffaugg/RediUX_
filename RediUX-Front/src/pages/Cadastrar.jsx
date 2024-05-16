@@ -1,4 +1,3 @@
-import Tollbaradm from "../components/TollbarADM/TollbarADM"
 import { Box, Button, Container, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Typography, Stack } from "@mui/material"
 import { MuiFileInput } from "mui-file-input"
 import { ArrowBackIosNew } from "@mui/icons-material"
@@ -9,6 +8,9 @@ import { imageDb } from "../config/firebase"
 import { getDownloadURL, listAll, ref, uploadBytes } from "@firebase/storage"
 import { v4 } from "uuid"
 import { createContent } from "../environment/Api";
+
+import CustomToolBar from "../components/CustomToolBar/CustomToolBar";
+import LogoImgSml from "../assets/logo-sml.svg";
 
 const Cadastrar = () => {
 
@@ -115,7 +117,11 @@ const Cadastrar = () => {
 
     return (
         <>
-            <Tollbaradm />
+            <CustomToolBar isADM>
+                <a href="/">
+                    <img src={LogoImgSml} height={38} alt="logo-sml" />
+                </a>
+            </CustomToolBar>
 
             <Container
                 sx={{

@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
 import ListaConteudos from "./components/ListaConteudos/ListaConteudos";
-import Conteudo from "./components/Conteudo/Conteudo";
 import Livro from "./components/PagMidias/Livro";
 import Artigo from "./components/PagMidias/Artigo";
 import Podcast from "./components/PagMidias/Podcast";
@@ -21,13 +20,12 @@ import About from "./pages/About";
 function App() {
 
   const { globalState } = useGlobalState();
-  const { estaAutenticado } = globalState;
+  const { isAuth } = globalState;
 
   return (
     <Routes>
       <Route element={<Home />} path="/" exact />
       <Route element={<ListaConteudos />} path="/Pesquisa" />
-      <Route element={<Conteudo />} path="/Conteudo" />
       <Route element={<Livro />} path="/Livros" />
       <Route element={<Artigo />} path="/Artigos" />
       <Route element={<Podcast />} path="/Podcasts" />
@@ -38,24 +36,24 @@ function App() {
 
       <Route
         path="/ADM/Login"
-        element={estaAutenticado ? (<Navigate to="/ADM/ListaConteudos" />) : (<Login />)}
+        element={isAuth ? (<Navigate to="/ADM/ListaConteudos" />) : (<Login />)}
       />
       <Route
         path="/ADM/ListaConteudos"
-        element={estaAutenticado ? <ListaConteudosADM /> : <Login />}
+        element={isAuth ? <ListaConteudosADM /> : <Login />}
       />
 
       <Route
         path="/ADM/Conteudo/:id"
-        element={estaAutenticado ? <ConteudoADM /> : <Login />}
+        element={isAuth ? <ConteudoADM /> : <Login />}
       />
       <Route 
         path="/ADM/Cadastrar"
-        element={estaAutenticado ? <Cadastrar /> : <Login />}
+        element={isAuth ? <Cadastrar /> : <Login />}
       />
       <Route
       path="/ADM/Editar/:id"
-      element={estaAutenticado ? <Editar /> : <Login />}
+      element={isAuth ? <Editar /> : <Login />}
       />
 
       <Route element={<ResultadosPesquisas />} path="/results" />

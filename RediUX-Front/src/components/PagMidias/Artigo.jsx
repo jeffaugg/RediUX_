@@ -4,7 +4,7 @@ import { useState } from "react";
 import folder from "../../assets/folder.svg"
 import { ArrowBackIos } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Tollbar from "../ToolbarU/Toolbar";
+import CustomToolBar from "../CustomToolBar/CustomToolBar";
 
 const Artigo = () => {
     const [search, setSearch] = useState("");
@@ -21,7 +21,7 @@ const Artigo = () => {
 
     return (
         <>
-            <Tollbar />
+            <CustomToolBar />
 
             <Container>
                 <Box

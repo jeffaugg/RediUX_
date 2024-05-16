@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Tollbar from "../ToolbarU/Toolbar";
+import CustomToolBar from "../CustomToolBar/CustomToolBar";
 import { Container, Typography, Button, Box, TextField, InputAdornment, FormControl, InputLabel, Select, MenuItem, Card, CardMedia, CardContent, Chip, CardActions, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
@@ -67,7 +67,7 @@ const SearchResults = () => {
 
   return (
     <>
-      <Tollbar />
+      <CustomToolBar />
       <Container>
         <Box
           display="flex"

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const BUTTON_COLOR = "#BECBEA";
 const BUTTON_HOVER_COLOR = "#0C2D8A";
 
-const MediaButton = ({ to, startIcon, onClick, children }) => (
+const MidiaButton = ({ to, startIcon, onClick, children }) => (
     <Link to={to}>
         <Button
             variant="contained"
@@ -29,4 +29,4 @@ const MediaButton = ({ to, startIcon, onClick, children }) => (
     </Link>
 );
 
-export default MediaButton;
+export default MidiaButton;

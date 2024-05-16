@@ -8,7 +8,7 @@ export const tags = [
     "ArquiteturaDaInformacao"
 ];
 
-export const mediaTypes = [
+export const midiaTypes = [
     { type: 'livro', icon: <Book />, label: 'Livro' },
     { type: 'artigo', icon: <Article />, label: 'Artigo' },
     { type: 'podcast', icon: <Mic />, label: 'Podcast' },

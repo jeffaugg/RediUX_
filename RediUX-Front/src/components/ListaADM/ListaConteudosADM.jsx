@@ -5,8 +5,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { Delete, Edit } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Tollbaradm from "../TollbarADM/TollbarADM";
 import { deleteContent, getContentList } from "../../environment/Api";
+import CustomToolBar from "../CustomToolBar/CustomToolBar";
+import LogoImgSml from "../../assets/logo-sml.svg";
 
 const ConteudoADM = () => {
 
@@ -75,7 +76,11 @@ const ConteudoADM = () => {
 
     return (
         <>
-            <Tollbaradm />
+            <CustomToolBar isADM>
+                <a href="/">
+                    <img src={LogoImgSml} height={38} alt="logo-sml" />
+                </a>
+            </CustomToolBar>
 
             <Container
                 sx={{
