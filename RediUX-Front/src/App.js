@@ -7,7 +7,7 @@ import Artigo from "./components/PagMidias/Artigo";
 import Podcast from "./components/PagMidias/Podcast";
 import Video from "./components/PagMidias/Video";
 
-import Login from "./components/Login/Login";
+import Login from "./pages/Login";
 import ListaConteudosADM from "./components/ListaADM/ListaConteudosADM";
 import ConteudoADM from "./components/ConteudoADM/ConteudoADM";
 import Cadastrar from "./pages/Cadastrar";

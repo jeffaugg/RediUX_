@@ -1,13 +1,13 @@
 import { Container, Box } from "@mui/material"
-import Logo from "../../assets/logo.svg"
-import Ilustracao from "../../assets/ilustracao.svg"
+import Logo from "../assets/logo.svg"
+import Ilustracao from "../assets/ilustracao.svg"
 
-import { useGlobalState } from "./GlobalStateContext";
+import { useGlobalState } from "../components/Login/GlobalStateContext";
 import { useState } from "react"
 
-import LoginForm from "./LoginForm";
-import ResetPasswordButton from "../Buttons/ResetPasswordButton";
-import LoginButton from "../Buttons/LoginButton";
+import LoginForm from "../components/Login/LoginForm";
+import ResetPasswordButton from "../components/Buttons/ResetPasswordButton";
+import LoginButton from "../components/Buttons/LoginButton";
 
 const Login = () => {
   const { setGlobalState } = useGlobalState();
