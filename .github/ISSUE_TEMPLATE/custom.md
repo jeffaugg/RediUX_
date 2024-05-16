@@ -1,9 +1,11 @@
 ---
 name: Issue Custom
 about: Custom Template RediUX
----
+title: ''
+labels: ''
+assignees: ''
 
-# Issue Template
+---
 
 ## Description
 > Provide a detailed description of the issue you're experiencing. Include any relevant context or links to where the issue can be observed.
