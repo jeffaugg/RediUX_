@@ -2,18 +2,21 @@ import { Box, Toolbar, Button, useMediaQuery } from "@mui/material";
 import Logout from "@mui/icons-material/Logout";
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase';
-
-import "firebase/auth";
+import { useContext } from "react";
+import { GlobalStateContext } from "../Login/GlobalStateContext";
 
 const CustomToolBar = ({ children, isADM }) => {
-  const handleLogout = () => {
-    signOut(auth)
-   .then(() => {
+  const { setGlobalState } = useContext(GlobalStateContext);
+  const { globalState } = useContext(GlobalStateContext);
+
+  const handleLogout = async () => {
+    await signOut(auth)
+      .then(() => {
+        setGlobalState({ ...globalState, isAuth: false });
+        localStorage.setItem('isAuth', false);
         window.location.href = "/ADM/Login";
-        localStorage.removeItem("authData");
-        window.location.reload();
       })
-   .catch((error) => {
+      .catch((error) => {
         console.log(error);
       });
   };
