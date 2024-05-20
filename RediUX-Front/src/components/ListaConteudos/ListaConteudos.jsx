@@ -4,7 +4,8 @@ import { useState } from "react";
 import folder from "../../assets/folder.svg";
 import { ArrowBackIos } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
-import CustomToolBar from "../CustomToolBar/CustomToolBar";
+import CustomToolbar from "../CustomToolBar/CustomToolBar";
+import LogoImgSml from "../../assets/logo-sml.svg";
 
 const ListaConteudos = () => {
     const [search, setSearch] = useState("");
@@ -34,7 +35,11 @@ const ListaConteudos = () => {
 
     return (
         <>
-            <CustomToolBar />
+            <CustomToolbar>
+                <a href="/">
+                    <img src={LogoImgSml} height={38} alt="logo-sml" />
+                </a>
+            </CustomToolbar>
 
             <Container>
                 <Typography

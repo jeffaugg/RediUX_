@@ -7,9 +7,11 @@ import Artigo from "./components/PagMidias/Artigo";
 import Podcast from "./components/PagMidias/Podcast";
 import Video from "./components/PagMidias/Video";
 
+import ContentInfo from "./components/Content/ContentInfo";
+
 import Login from "./pages/Login";
 import ListaConteudosADM from "./components/ListaADM/ListaConteudosADM";
-import ConteudoADM from "./components/ConteudoADM/ConteudoADM";
+
 import Cadastrar from "./pages/Cadastrar";
 import Editar from "./pages/Editar";
 import ResultadosPesquisas from "./components/ResultadosPesquisa/ResultadosPesquisas"
@@ -44,9 +46,10 @@ function App() {
       />
 
       <Route
-        path="/ADM/Conteudo/:id"
-        element={isAuth ? <ConteudoADM /> : <Login />}
+          path="/ADM/Conteudo/:id"
+          element={isAuth ? <ContentInfo /> : <Login />} 
       />
+
       <Route 
         path="/ADM/Cadastrar"
         element={isAuth ? <Cadastrar /> : <Login />}

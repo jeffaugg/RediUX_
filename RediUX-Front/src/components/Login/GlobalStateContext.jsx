@@ -30,7 +30,7 @@ export const GlobalStateProvider = ({ children }) => {
     if (storedAuthState === 'true') {
       setGlobalState({ ...globalState, isAuth: true });
     }
-  }, []);
+  }, [globalState]);
 
   return (
     <GlobalStateContext.Provider value={{ globalState, setGlobalState, handleLogin }}>

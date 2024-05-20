@@ -3,7 +3,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
-import { Delete, Edit } from "@mui/icons-material";
+import { Delete, Edit, Visibility } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { deleteContent, getContentList } from "../../environment/Api";
 import CustomToolBar from "../CustomToolBar/CustomToolBar";
@@ -235,6 +235,11 @@ const ConteudoADM = () => {
                                             </Link>
                                         </TableCell>
                                         <TableCell align="center"><IconButton aria-label="deletar" onClick={() => excluirConteudo(conteudo._id)}><Delete /></IconButton></TableCell>
+                                        <TableCell align="center">
+                                            <Link to={`/ADM/Conteudo/${conteudo._id}`}>
+                                                <IconButton aria-label="visualizar"><Visibility /></IconButton>
+                                            </Link>
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

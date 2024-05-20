@@ -93,6 +93,7 @@ const Home = () => {
                 </Typography>
 
                 <MediaButtonsContainer midiaTypes={midiaTypes} search={search} handleSetMidia={handleSetMidia} />
+                
             </Container>
 
             <Box

@@ -4,8 +4,6 @@ import Ilustracao from "../assets/ilustracao.svg";
 
 import { useGlobalState } from "../components/Login/GlobalStateContext";
 import { useState, useEffect } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../config/firebase";
 
 import LoginForm from "../components/Login/LoginForm";
 import ResetPasswordButton from "../components/Buttons/ResetPasswordButton";
@@ -18,15 +16,14 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    handleLogin(email, password); // Use handleLogin from GlobalStateContext
+    handleLogin(email, password);
   };
 
   useEffect(() => {
-    // Check if user is already authenticated on load
-    if (globalState.isAuth) { // Use isAuth from globalState
-      // Handle potential logic for a pre-authenticated user (optional)
+    if (globalState.isAuth) {
+      setGlobalState({ ...globalState, isAuth: false });
     }
-  }, [globalState.isAuth]);
+  }, [globalState, globalState.isAuth, setGlobalState]);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -37,7 +34,6 @@ const Login = () => {
   };
 
   const handleResetPassword = (event) => {
-    // Handle reset password logic (optional)
   };
 
   const handleKeyPress = (event) => {
