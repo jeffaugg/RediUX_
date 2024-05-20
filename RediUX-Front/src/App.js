@@ -7,7 +7,6 @@ import Artigo from "./components/PagMidias/Artigo";
 import Podcast from "./components/PagMidias/Podcast";
 import Video from "./components/PagMidias/Video";
 
-import ContentInfo from "./components/Content/ContentInfo";
 
 import Login from "./pages/Login";
 import ListaConteudosADM from "./components/ListaADM/ListaConteudosADM";
@@ -18,6 +17,7 @@ import ResultadosPesquisas from "./components/ResultadosPesquisa/ResultadosPesqu
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import { useGlobalState } from "./components/Login/GlobalStateContext";
 import About from "./pages/About";
+import ContentADM from "./pages/ContentADM";
 
 function App() {
 
@@ -47,7 +47,7 @@ function App() {
 
       <Route
           path="/ADM/Conteudo/:id"
-          element={isAuth ? <ContentInfo /> : <Login />} 
+          element={isAuth ? <ContentADM /> : <Login />} 
       />
 
       <Route 

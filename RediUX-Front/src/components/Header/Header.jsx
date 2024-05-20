@@ -1,15 +1,13 @@
 import React from 'react';
 import CustomToolBar from '../CustomToolBar/CustomToolBar';
-import LogoImgSml from '../../assets/logo-sml.svg';
+import BackButton from '../Buttons/BackButton'; // Import the BackButton component
 
 const Header = () => {
-    return (
-        <CustomToolBar isADM>
-            <a href="/">
-                <img src={LogoImgSml} height={38} alt="logo-sml" />
-            </a>
-        </CustomToolBar>
-    );
+  return (
+    <CustomToolBar isADM>
+      <BackButton /> 
+    </CustomToolBar>
+  );
 };
 
 export default Header;
