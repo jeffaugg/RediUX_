@@ -34,11 +34,10 @@ const Login = () => {
   const handleResetPassword = (event) => {
     setGlobalState({
       user: email,
-      password: 123,
+      password: password,
       isAuth: true,
     });
   };
-
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {

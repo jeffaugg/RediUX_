@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../config/firebase';
 
@@ -9,6 +9,7 @@ export const GlobalStateProvider = ({ children }) => {
     user: null,
     password: null,
     isAuth: false,
+    lastActive: null,
   });
 
   const signIn = async (email, password) => {
@@ -18,12 +19,36 @@ export const GlobalStateProvider = ({ children }) => {
         user: userCredential.user,
         password: password,
         isAuth: true,
+        lastActive: Date.now(), 
       });
+      startLogoutTimer();
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
     }
-    catch (error) {
-      console.error("Erro ao fazer login: ", error);
-    }
-  };  
+  };
+
+  const startLogoutTimer = () => {
+    const timeout = setTimeout(() => {
+      setGlobalState({ user: null, password: null, isAuth: false, lastActive: null });
+    }, 1000 * 60 * 60); 
+    return () => clearTimeout(timeout);
+  };
+
+  useEffect(() => {
+    const handleActivity = () => {
+      setGlobalState((prevState) => ({ ...prevState, lastActive: Date.now() })); 
+    };
+
+    window.addEventListener('click', handleActivity);
+    window.addEventListener('mousemove', handleActivity);
+    window.addEventListener('keypress', handleActivity);
+
+    return () => {
+      window.removeEventListener('click', handleActivity);
+      window.removeEventListener('mousemove', handleActivity);
+      window.removeEventListener('keypress', handleActivity);
+    };
+  }, []);
 
   return (
     <GlobalStateContext.Provider value={{ globalState, setGlobalState, signIn }}>
