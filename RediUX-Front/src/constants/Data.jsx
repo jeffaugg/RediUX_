@@ -2,10 +2,10 @@ import { Book, Article, Mic, SmartDisplay } from "@mui/icons-material";
 
 export const tags = [
     "Carreira",
-    "FundamentosDeUX",
-    "DesignDeInteração",
-    "UIDesign",
-    "ArquiteturaDaInformacao"
+    "Fundamentos de UX",
+    "Design de Interação",
+    "UI Design",
+    "Arquitetura da Informacao"
 ];
 
 export const midiaTypes = [

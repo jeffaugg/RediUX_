@@ -1,7 +1,7 @@
 import { TextField, InputAdornment, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-const SearchField = ({ value, onChange, onKeyDown, onSubmit }) => (
+const SearchField = ({ value, onChange, onKeyDown, onSubmit, width }) => (
     <TextField
         id="search"
         type="search"
@@ -9,7 +9,7 @@ const SearchField = ({ value, onChange, onKeyDown, onSubmit }) => (
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
-        sx={{ width: 600 }}
+        sx={{ width: width }}
         InputProps={{
             endAdornment: (
                 <InputAdornment position="end">

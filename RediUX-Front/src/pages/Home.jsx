@@ -73,6 +73,7 @@ const Home = () => {
                         onChange={handleChange}
                         onKeyDown={handleKeyPress}
                         onSubmit={handleSubmit}
+                        width={600}
                     />
 
                     <TagSelector

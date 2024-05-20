@@ -13,7 +13,7 @@ import ListaConteudosADM from "./components/ListaADM/ListaConteudosADM";
 
 import Cadastrar from "./pages/Cadastrar";
 import Editar from "./pages/Editar";
-import ResultadosPesquisas from "./components/ResultadosPesquisa/ResultadosPesquisas"
+import ResultadosPesquisas from "./pages/ResultadosPesquisas"
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import { useGlobalState } from "./components/Login/GlobalStateContext";
 import About from "./pages/About";
