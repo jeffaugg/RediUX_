@@ -106,7 +106,7 @@ const Home = () => {
                     '& > :not(style)': { m: 2 },
                 }}
             >
-                <NavigationLink to="/ADM/login">Administração</NavigationLink>
+                <NavigationLink to="/login">Administração</NavigationLink>
                 <NavigationLink to="/about">Sobre</NavigationLink>
             </Box>
         </>

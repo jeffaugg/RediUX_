@@ -28,12 +28,15 @@ function App() {
 
       <Route element={<About />} path="/about" />
 
+      <Route element={<Login />} path="/login" />
+
       <Route element={<ResetPassword />} path="/reset-password" />
 
       <Route
         path="/ADM/Login"
         element={isAuth ? (<Navigate to="/ADM/ListaConteudos" />) : (<Login />)}
       />
+      
       <Route
         path="/ADM/ListaConteudos"
         element={isAuth ? <ListaConteudosADM /> : <Login />}

@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-const LoginForm = ({ user, password, handleUserChange, handlePasswordChange }) => {
+const LoginForm = ({ user, password, handleUserChange, handlePasswordChange, handleKeyPress }) => {
   return (
     <>
       <TextField
@@ -29,6 +29,7 @@ const LoginForm = ({ user, password, handleUserChange, handlePasswordChange }) =
         type="password"
         value={password}
         onChange={handlePasswordChange}
+        onKeyDown={handleKeyPress}
       />
     </>
   );

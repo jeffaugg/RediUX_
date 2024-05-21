@@ -20,6 +20,7 @@ export const GlobalStateProvider = ({ children }) => {
         isAuth: true,
       });
       localStorage.setItem('isAuth', true); 
+      window.location.href = "/ADM/ListaConteudos";
     } catch (error) {
       console.error('Erro ao fazer login:', error);
     }
@@ -28,9 +29,9 @@ export const GlobalStateProvider = ({ children }) => {
   useEffect(() => {
     const storedAuthState = localStorage.getItem('isAuth');
     if (storedAuthState === 'true') {
-      setGlobalState({ ...globalState, isAuth: true });
+      setGlobalState((prevState) => ({...prevState, isAuth: true }));
     }
-  }, [globalState]);
+  }, []);
 
   return (
     <GlobalStateContext.Provider value={{ globalState, setGlobalState, handleLogin }}>

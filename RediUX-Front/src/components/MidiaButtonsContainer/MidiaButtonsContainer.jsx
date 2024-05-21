@@ -10,7 +10,7 @@ const MidiaButtonsContainer = ({ midiaTypes, search, handleSetMidia }) => (
       }}
   >
       {midiaTypes.map(({ type, icon, label }) => (
-          <MidiaButton to={`/results?term=${search}&media=${type}`} startIcon={icon} onClick={() => handleSetMidia(type)}>
+          <MidiaButton key={type} to={`/results?term=${search}&media=${type}`} startIcon={icon} onClick={() => handleSetMidia(type)}>
               {label}
           </MidiaButton>
       ))}

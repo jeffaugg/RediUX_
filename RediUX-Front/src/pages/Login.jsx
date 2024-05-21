@@ -20,8 +20,8 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (globalState.isAuth) {
-      setGlobalState({ ...globalState, isAuth: false });
+    if (globalState.isAuth && !localStorage.getItem('isAuth')) {
+      setGlobalState({...globalState, isAuth: false });
     }
   }, [globalState, globalState.isAuth, setGlobalState]);
 

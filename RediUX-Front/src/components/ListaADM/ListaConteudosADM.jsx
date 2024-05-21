@@ -216,6 +216,7 @@ const ConteudoADM = () => {
                                     <TableCell align="left">Descrição</TableCell>
                                     <TableCell align="left">Editar</TableCell>
                                     <TableCell align="left">Excluir</TableCell>
+                                    <TableCell align="left">Visualizar</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -229,17 +230,22 @@ const ConteudoADM = () => {
                                         </TableCell>
                                         <TableCell align="left">{conteudo.autor}</TableCell>
                                         <TableCell align="left">{conteudo.descricao}</TableCell>
+
                                         <TableCell align="center">
                                             <Link to={`/ADM/Editar/${conteudo._id}`}>
                                                 <IconButton aria-label="editar"><Edit /></IconButton>
                                             </Link>
                                         </TableCell>
-                                        <TableCell align="center"><IconButton aria-label="deletar" onClick={() => excluirConteudo(conteudo._id)}><Delete /></IconButton></TableCell>
+
+                                        <TableCell align="center">
+                                            <IconButton aria-label="deletar" onClick={() => excluirConteudo(conteudo._id)}><Delete /></IconButton></TableCell>
+
                                         <TableCell align="center">
                                             <Link to={`/ADM/Conteudo/${conteudo._id}`}>
                                                 <IconButton aria-label="visualizar"><Visibility /></IconButton>
                                             </Link>
                                         </TableCell>
+
                                     </TableRow>
                                 ))}
                             </TableBody>
