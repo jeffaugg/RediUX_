@@ -12,6 +12,7 @@ import ResetPassword from "./components/ResetPassword/ResetPassword";
 import { useGlobalState } from "./components/Login/GlobalStateContext";
 import About from "./pages/About";
 import ContentADM from "./pages/ContentADM";
+import Favicon from "../src/components/Favicon/Favicon";
 
 function App() {
 
@@ -19,6 +20,9 @@ function App() {
   const { isAuth } = globalState;
 
   return (
+    <div className="App">
+    <Favicon />
+
     <Routes>
       <Route element={<Home />} path="/" exact />
 
@@ -52,6 +56,7 @@ function App() {
 
       <Route element={<ResultadosPesquisas />} path="/results" />
     </Routes>
+    </div>
   );
 }
 
