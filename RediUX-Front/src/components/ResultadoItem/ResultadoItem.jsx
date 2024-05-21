@@ -1,7 +1,10 @@
 import React from "react";
-import { Box, Card, CardMedia, CardContent, CardActions, Button, Chip, Typography, Stack } from "@mui/material";
+import { Box, Card, CardMedia, CardContent, CardActions, Chip, Typography, Stack } from "@mui/material";
 import { Book } from "@mui/icons-material";
+
+import CustomButton from "../Buttons/CustomButton";
 import folder from "../../assets/folder.svg";
+
 
 
 const ResultadoItem = ({ result }) => {
@@ -24,7 +27,15 @@ const ResultadoItem = ({ result }) => {
         width: "400px",
       }}
     >
-      <Card sx={{ mr: 2, height: "400px", display: "flex", flexDirection: "column", width: "100%" }}>
+      <Card 
+        sx={{ 
+          mr: 2, 
+          height: "400px", 
+          display: "flex", 
+          flexDirection: "column", 
+          width: "100%" 
+        }}
+        >
         <div
           style={{
             width: "100%",
@@ -60,35 +71,37 @@ const ResultadoItem = ({ result }) => {
               marginBottom: "10px",
             }}
           >
-            <Typography variant="h6" component="div"> {result.titulo} </Typography>
-            <Chip variant="outlined" size="small" icon={<Book />} sx={{ mr: 1 }} label={LocalizarMidia(result.midia)} />
+            <Typography 
+              variant="h6" 
+              component="div"
+            > 
+              {result.titulo} 
+            </Typography>
+            <Chip 
+              variant="outlined" 
+              size="small" 
+              icon={<Book />} 
+              sx={{ mr: 1 }} 
+              label={LocalizarMidia(result.midia)} 
+            />
           </Stack>
-          <Typography variant="body1" component="div"> {result.descricao} </Typography>
+          <Typography 
+            variant="body1" 
+            component="div"
+          > 
+            {result.descricao} 
+          </Typography>
         </CardContent>
         <CardActions
           sx={{
             mt: "auto",
           }}
         >
-          <Button
-            variant="outlined"
-            size="small"
-            sx={{
-              mt: -1,
-              ml: 1,
-              mb: 1,
-              color: "#0C2D8A",
-              borderColor: "#0C2D8A",
-              '&:hover': {
-                backgroundColor: "#0C2D8A",
-                color: "#BECBEA",
-              },
-            }}
+          <CustomButton
+            text="Ir ao conteúdo"
             href={result.link}
             target="_blank"
-          >
-            Ir ao conteúdo
-          </Button>
+          />
         </CardActions>
       </Card>
     </Box>

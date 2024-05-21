@@ -2,16 +2,17 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Box, Container, Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+
 import SearchField from "../components/SearchField/SearchField";
 import TagSelector from "../components/TagSelector/TagSelector";
 import CustomToolbar from "../components/CustomToolBar/CustomToolBar";
 import ResultadoDaBusca from "../components/ResultadosDaBusca/ResultadoDaBusca";
-import NavigationLink from "../components/NavigationLink/NavigationLink";
 import { searchContent } from "../environment/Api";
 import { tags } from "../constants/Data";
 import LogoImgSml from "../assets/logo-sml.svg";
 import ResultadoItem from "../components/ResultadoItem/ResultadoItem";
 import SemResultadosPesquisa from "../components/SemResultadosPesquisa/SemResultadosPesquisa";
+import Loading from "../components/Loading/Loading";
 
 const ResultadosPesquisas = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const ResultadosPesquisas = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [search, setSearch] = useState("");
   const [tag, setTag] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
     try {
@@ -29,6 +31,8 @@ const ResultadosPesquisas = () => {
       setSearchResults(results);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   }, [searchTerm, searchMedia]);
 
@@ -58,6 +62,10 @@ const ResultadosPesquisas = () => {
       handleSubmit(event);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [searchTerm, searchMedia, fetchData]);
 
   return (
     <>
@@ -114,7 +122,9 @@ const ResultadosPesquisas = () => {
             justifyContent: "center",
           }}
         >
-          {searchResults.length > 0 ? (
+          {isLoading? (
+            <Loading />
+          ) : searchResults.length > 0? (
             <>
               {searchResults.map((result) => (
                 <ResultadoItem key={result._id} result={result} />
@@ -125,19 +135,6 @@ const ResultadosPesquisas = () => {
           )}
         </Container>
       </Container>
-
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          mt: 25,
-          mb: 5,
-          '& > :not(style)': { m: 2 },
-        }}
-      >
-        <NavigationLink to="/ADM/login">Administração</NavigationLink>
-        <NavigationLink to="/about">Sobre</NavigationLink>
-      </Box>
     </>
   );
 };
