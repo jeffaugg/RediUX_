@@ -1,12 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
-import ListaConteudos from "./components/ListaConteudos/ListaConteudos";
-import Livro from "./components/PagMidias/Livro";
-import Artigo from "./components/PagMidias/Artigo";
-import Podcast from "./components/PagMidias/Podcast";
-import Video from "./components/PagMidias/Video";
-
 
 import Login from "./pages/Login";
 import ListaConteudosADM from "./components/ListaADM/ListaConteudosADM";
@@ -27,11 +21,7 @@ function App() {
   return (
     <Routes>
       <Route element={<Home />} path="/" exact />
-      <Route element={<ListaConteudos />} path="/Pesquisa" />
-      <Route element={<Livro />} path="/Livros" />
-      <Route element={<Artigo />} path="/Artigos" />
-      <Route element={<Podcast />} path="/Podcasts" />
-      <Route element={<Video />} path="/Videos" />
+
       <Route element={<About />} path="/about" />
 
       <Route element={<ResetPassword />} path="/reset-password" />
@@ -54,6 +44,7 @@ function App() {
         path="/ADM/Cadastrar"
         element={isAuth ? <Cadastrar /> : <Login />}
       />
+      
       <Route
       path="/ADM/Editar/:id"
       element={isAuth ? <Editar /> : <Login />}
