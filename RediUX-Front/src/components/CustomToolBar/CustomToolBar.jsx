@@ -1,9 +1,10 @@
-import { Box, Toolbar, Button, useMediaQuery } from "@mui/material";
-import Logout from "@mui/icons-material/Logout";
+import { Box, Toolbar, useMediaQuery } from "@mui/material";
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase';
 import { useContext } from "react";
 import { GlobalStateContext } from "../Login/GlobalStateContext";
+import RedButton from "../Buttons/RedButton";
+import Logout from '@mui/icons-material/Logout';
 
 const CustomToolBar = ({ children, isADM }) => {
   const { setGlobalState } = useContext(GlobalStateContext);
@@ -51,24 +52,11 @@ const CustomToolBar = ({ children, isADM }) => {
         }}
       >
         {isADM && (
-          <Button
+          <RedButton 
             onClick={handleLogout}
-            variant="outlined"
             startIcon={<Logout />}
-            sx={{
-              boxShadow: "none",
-              borderColor: "#DC3545",
-              color: "#DC3545",
-              '&:hover': {
-                backgroundColor: "#DC3545",
-                borderColor: "#DC3545",
-                color: "#F5f5f5",
-                boxShadow: "none",
-              }
-            }}
-          >
-            Logout
-          </Button>
+            text={"LOGOUT"}
+          />
         )}
       </Box>
     </Toolbar>

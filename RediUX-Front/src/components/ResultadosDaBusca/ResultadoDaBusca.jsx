@@ -2,17 +2,12 @@ import React from "react";
 import { Typography, Box } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-const ResultadoDaBusca = ({ searchTerm }) => {
+const ResultadoDaBusca = ({ searchTerm, sx }) => {
   return (
     <Box
       display="flex"
       alignItems="center"
-      sx={{
-        mt: 5,
-        ml: 8,
-        display: "flex",
-        justifyContent: "flex-start",
-      }}
+      sx={sx}
     >
       <SearchIcon
         sx={{

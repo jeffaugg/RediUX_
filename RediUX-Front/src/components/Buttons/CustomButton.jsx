@@ -2,26 +2,21 @@ import React from "react";
 import { Button } from "@mui/material";
 
 const CustomButton = ({
-  text,
-  href,
-  target = "_blank",
-  backgroundColor = "#0C2D8A",
-  hoverBackgroundColor = "#BECBEA",
-  color = "white",
-  hoverColor = "#0C2D8A",
-  ...props
+  text, href, size, sx, mt, ml, mb, height, target = "_blank", backgroundColor = "#0C2D8A", hoverBackgroundColor = "#BECBEA",
+  color = "white", hoverColor = "#0C2D8A", ...props
 }) => {
   return (
     <Button
       variant="outlined"
-      size="small"
+      size={size}
       sx={{
-        mt: -1,
-        ml: 1,
-        mb: 1,
-        backgroundColor,
-        color,
-        borderColor: backgroundColor, 
+        height: { height },
+        mt: { mt },
+        ml: { ml },
+        mb: { mb },
+        backgroundColor: { backgroundColor },
+        color: { color },
+        borderColor: backgroundColor,
         '&:hover': {
           backgroundColor: hoverBackgroundColor,
           color: hoverColor,

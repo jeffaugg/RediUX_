@@ -3,17 +3,21 @@ import { Box, Button } from '@mui/material';
 import { ArrowBackIosNew } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
-const BackButton = () => {
+const BackButton = ({ sx, text = "Voltar" }) => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Link to="/ADM/ListaConteudos">
+      <Link to="/ADM/ListaConteudos" style={{ textDecoration: 'none' }}>
         <Button
-          variant="secondary"
+          variant='secondary'
           size="medium"
           startIcon={<ArrowBackIosNew />}
-          sx={{ mr: 70, color: '#131313' }}
+          sx={{
+            color: '#131313',
+            height: 55,
+            ...sx
+          }}
         >
-          Voltar
+          {text}
         </Button>
       </Link>
     </Box>

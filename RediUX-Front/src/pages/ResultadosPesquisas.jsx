@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Box, Container, Button } from "@mui/material";
-import { ArrowBackIosNew } from "@mui/icons-material";
+import { Box, Container } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-
 import SearchField from "../components/SearchField/SearchField";
 import TagSelector from "../components/TagSelector/TagSelector";
 import CustomToolbar from "../components/CustomToolBar/CustomToolBar";
@@ -13,6 +11,7 @@ import LogoImgSml from "../assets/logo-sml.svg";
 import ResultadoItem from "../components/ResultadoItem/ResultadoItem";
 import SemResultadosPesquisa from "../components/SemResultadosPesquisa/SemResultadosPesquisa";
 import Loading from "../components/Loading/Loading";
+import BackButton from "../components/Buttons/BackButton";
 
 const ResultadosPesquisas = () => {
   const navigate = useNavigate();
@@ -86,14 +85,8 @@ const ResultadosPesquisas = () => {
           }}
         >
           <Link to="/">
-            <Button
-              variant="secondary"
-              size="medium"
-              startIcon={<ArrowBackIosNew />}
-              sx={{
-                color: "#131313",
-                height: 55,
-              }}
+            <BackButton
+              text=""
             />
           </Link>
 
@@ -111,7 +104,16 @@ const ResultadosPesquisas = () => {
           />
         </Box>
 
-        <ResultadoDaBusca searchTerm={searchTerm} searchResults={searchResults} />
+        <ResultadoDaBusca
+          searchTerm={searchTerm}
+          searchResults={searchResults}
+          sx={{
+            mt: 5,
+            ml: 8,
+            display: "flex",
+            justifyContent: "flex-start",
+          }}
+        />
 
         <Container
           sx={{
@@ -122,9 +124,9 @@ const ResultadosPesquisas = () => {
             justifyContent: "center",
           }}
         >
-          {isLoading? (
+          {isLoading ? (
             <Loading />
-          ) : searchResults.length > 0? (
+          ) : searchResults.length > 0 ? (
             <>
               {searchResults.map((result) => (
                 <ResultadoItem key={result._id} result={result} />

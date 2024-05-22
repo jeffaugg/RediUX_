@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 
 import Login from "./pages/Login";
-import ListaConteudosADM from "./components/ListaADM/ListaConteudosADM";
+import ListaConteudosADM from "./pages/ListaConteudosADM";
 
 import Cadastrar from "./pages/Cadastrar";
 import Editar from "./pages/Editar";

@@ -1,6 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
 import { MuiFileInput } from "mui-file-input";
-import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { imageDb } from "../config/firebase";
@@ -12,7 +11,7 @@ import LogoImgSml from "../assets/logo-sml.svg";
 import FormSection from "../components/FormSection/FormSection";
 import CheckBoxSection from "../components/CheckBoxSection/CheckBoxSection";
 import FormButton from "../components/FormButton/FormButton";
-import { Button } from "@mui/material";
+import BackButton from "../components/Buttons/BackButton"
 
 const Cadastrar = () => {
     const [titulo, setTitulo] = useState("");
@@ -88,9 +87,7 @@ const Cadastrar = () => {
             </CustomToolBar>
             <Container sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <Link to="/ADM/ListaConteudos">
-                    <Button variant="secondary" size="medium" startIcon={<ArrowBackIosNew />} sx={{ mr: 70, mt: 5, color: "#131313" }}>
-                        Voltar
-                    </Button>
+                    <BackButton sx={{ mr: 70, mt: 5}}/>
                 </Link>
                 <Typography variant="h4" fontWeight="bold" mt={2}>Cadastrar Conteúdo</Typography>
                 <Box component="form" onSubmit={handleSubmit} mt={5} sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
