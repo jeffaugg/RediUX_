@@ -50,7 +50,7 @@ const ResetPassword = () => {
   return (
     <>
       <CustomToolBar isADM={false}>
-        <a href="/ADM/login">
+        <a href="/login">
           <img src={LogoImgSml} height={38} alt="logo-sml" />
         </a>
       </CustomToolBar>

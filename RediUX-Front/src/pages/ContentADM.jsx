@@ -1,12 +1,17 @@
 import { Container, Grid, Typography } from '@mui/material';
 import ContentInfo from '../components/Content/ContentInfo';
-import Header from '..//components/Header/Header';
+
+import CustomToolBar from '../components/CustomToolBar/CustomToolBar';
+import BackButton from '../components/Buttons/BackButton';
 
 const ContentADM = () => {
 
   return (
     <>
-      <Header />
+      <CustomToolBar isADM>
+        <BackButton /> 
+      </CustomToolBar>
+
       <div style={{ height: '64px' }} />
       <Container maxWidth="md">
         <Grid container spacing={2}>

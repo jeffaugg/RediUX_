@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
 
@@ -31,11 +31,6 @@ function App() {
       <Route element={<Login />} path="/login" />
 
       <Route element={<ResetPassword />} path="/reset-password" />
-
-      <Route
-        path="/ADM/Login"
-        element={isAuth ? (<Navigate to="/ADM/ListaConteudos" />) : (<Login />)}
-      />
       
       <Route
         path="/ADM/ListaConteudos"

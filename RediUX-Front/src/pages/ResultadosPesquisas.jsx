@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Box, Container } from "@mui/material";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import SearchField from "../components/SearchField/SearchField";
 import TagSelector from "../components/TagSelector/TagSelector";
 import CustomToolbar from "../components/CustomToolBar/CustomToolBar";
@@ -84,11 +84,9 @@ const ResultadosPesquisas = () => {
             justifyContent: "flex-start",
           }}
         >
-          <Link to="/">
-            <BackButton
-              text=""
-            />
-          </Link>
+          <BackButton
+            text=""
+          />
 
           <SearchField
             value={search}

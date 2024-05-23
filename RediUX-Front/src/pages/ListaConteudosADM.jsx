@@ -37,8 +37,7 @@ const ConteudoADM = () => {
 
         const filteredContents = originalContents.filter(content =>
             content.titulo.toLowerCase().includes(trimmedSearch.toLowerCase()) ||
-            content.autor.toLowerCase().includes(trimmedSearch.toLowerCase()) ||
-            content.descricao.toLowerCase().includes(trimmedSearch.toLowerCase())
+            content.autor.toLowerCase().includes(trimmedSearch.toLowerCase()) 
         );
 
         if (filteredContents.length === 0) {

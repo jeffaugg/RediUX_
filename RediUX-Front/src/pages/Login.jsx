@@ -6,8 +6,8 @@ import { useGlobalState } from "../components/Login/GlobalStateContext";
 import { useState, useEffect } from "react";
 
 import LoginForm from "../components/Login/LoginForm";
-import ResetPasswordButton from "../components/Buttons/ResetPasswordButton";
 import LoginButton from "../components/Buttons/LoginButton";
+import NavigationLink from "../components/NavigationLink/NavigationLink";
 
 const Login = () => {
   const { setGlobalState, globalState, handleLogin } = useGlobalState();
@@ -31,9 +31,6 @@ const Login = () => {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-  };
-
-  const handleResetPassword = (event) => {
   };
 
   const handleKeyPress = (event) => {
@@ -73,7 +70,10 @@ const Login = () => {
           handleKeyPress={handleKeyPress}
         />
 
-        <ResetPasswordButton handleResetPassword={handleResetPassword} />
+        <NavigationLink 
+          to={"/reset-password"} 
+          children={"Esqueci minha senha"}
+        />
 
         <LoginButton handleSubmit={handleSubmit} />
       </Box>

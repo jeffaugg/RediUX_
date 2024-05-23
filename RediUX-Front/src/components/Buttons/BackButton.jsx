@@ -1,12 +1,21 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import { ArrowBackIosNew } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const BackButton = ({ sx, text = "Voltar" }) => {
+const BackButton = ({ sx, text = "Voltar", to }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (to) {
+      navigate(to);
+    } else {
+      navigate(-1);
+    }
+  };
+
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Link to="/ADM/ListaConteudos" style={{ textDecoration: 'none' }}>
         <Button
           variant='secondary'
           size="medium"
@@ -16,10 +25,10 @@ const BackButton = ({ sx, text = "Voltar" }) => {
             height: 55,
             ...sx
           }}
+          onClick={handleClick}
         >
           {text}
         </Button>
-      </Link>
     </Box>
   );
 };
