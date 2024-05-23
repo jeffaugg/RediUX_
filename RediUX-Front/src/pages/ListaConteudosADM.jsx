@@ -62,7 +62,11 @@ const ConteudoADM = () => {
     };
 
     const handleDelete = async (id) => {
-        if (window.confirm("Deseja Excluir? " + id)) {
+        const contentToDelete = conteudos.find((content) => content._id === id);
+
+        const confirmationMessage = `Deseja Excluir o conteúdo: ${contentToDelete?.titulo}?`;
+
+        if (window.confirm(confirmationMessage)) {
             try {
                 await deleteContent(id);
                 const updatedContents = conteudos.filter(content => content._id !== id);
