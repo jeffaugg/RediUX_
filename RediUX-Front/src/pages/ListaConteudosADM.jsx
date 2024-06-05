@@ -9,6 +9,7 @@ import SearchField from "../components/SearchField/SearchField";
 import CustomButton from "../components/Buttons/CustomButton";
 import RedButton from "../components/Buttons/RedButton";
 import ResultadoDaBusca from "../components/ResultadosDaBusca/ResultadoDaBusca";
+import { getStorage, ref, deleteObject } from "firebase/storage";
 
 const ConteudoADM = () => {
     const [conteudos, setConteudos] = useState([]);
@@ -68,7 +69,13 @@ const ConteudoADM = () => {
 
         if (window.confirm(confirmationMessage)) {
             try {
+
                 await deleteContent(id);
+
+                const storage = getStorage();
+                const imageRef = ref(storage, contentToDelete.imgUrl); 
+                await deleteObject(imageRef);
+
                 const updatedContents = conteudos.filter(content => content._id !== id);
                 setConteudos(updatedContents);
                 setOriginalContents(updatedContents);
