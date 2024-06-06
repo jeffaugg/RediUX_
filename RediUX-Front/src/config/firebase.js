@@ -3,12 +3,12 @@ import { getAuth } from "firebase/auth"
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC8gog_UfFiU7Cap7qiptKLVBI89X_hM6I",
-  authDomain: "project-rediux.firebaseapp.com",
-  projectId: "project-rediux",
-  storageBucket: "project-rediux.appspot.com",
-  messagingSenderId: "365234318784",
-  appId: "1:365234318784:web:92cb0aedfddc9e449a2c25"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
