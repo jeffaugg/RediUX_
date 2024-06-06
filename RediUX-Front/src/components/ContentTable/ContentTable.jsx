@@ -18,7 +18,7 @@ const ContentTable = ({ contents, onDelete }) => (
             </TableHead>
             <TableBody>
                 {contents.map((content) => (
-                    <TableRow key={content.titulo} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableRow key={content._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         <TableCell component="th" scope="row">{content.titulo}</TableCell>
                         <TableCell align="left">{content.autor}</TableCell>
                         <TableCell align="left">{content.descricao}</TableCell>

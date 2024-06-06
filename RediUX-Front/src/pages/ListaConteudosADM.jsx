@@ -12,7 +12,7 @@ import ResultadoDaBusca from "../components/ResultadosDaBusca/ResultadoDaBusca";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 
 const ConteudoADM = () => {
-    const [conteudos, setConteudos] = useState([]);
+    const [contents, setContents] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [originalContents, setOriginalContents] = useState([]);
     const [searchResultTerm, setSearchResultTerm] = useState("");
@@ -21,7 +21,7 @@ const ConteudoADM = () => {
     const fetchContents = useCallback(async () => {
         try {
             const data = await getContentList();
-            setConteudos(data);
+            setContents(data);
             setOriginalContents(data);
         } catch (error) {
             console.error("Erro ao buscar os conteúdos: ", error);
@@ -45,7 +45,7 @@ const ConteudoADM = () => {
             alert("Nenhum resultado encontrado.");
             handleClearSearch();
         } else {
-            setConteudos(filteredContents);
+            setContents(filteredContents);
             setSearchResultTerm(trimmedSearch);
             setShowSearchResult(true);
         }
@@ -63,7 +63,7 @@ const ConteudoADM = () => {
     };
 
     const handleDelete = async (id) => {
-        const contentToDelete = conteudos.find((content) => content._id === id);
+        const contentToDelete = contents.find((content) => content._id === id);
 
         const confirmationMessage = `Deseja Excluir o conteúdo: ${contentToDelete?.titulo}?`;
 
@@ -76,8 +76,8 @@ const ConteudoADM = () => {
                 const imageRef = ref(storage, contentToDelete.imgUrl); 
                 await deleteObject(imageRef);
 
-                const updatedContents = conteudos.filter(content => content._id !== id);
-                setConteudos(updatedContents);
+                const updatedContents = contents.filter(content => content._id !== id);
+                setContents(updatedContents);
                 setOriginalContents(updatedContents);
             } catch (error) {
                 console.error("Erro ao excluir o conteúdo: ", error);
@@ -95,7 +95,7 @@ const ConteudoADM = () => {
 
             <Container sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <Typography component="h1" variant="h4" fontWeight={500} mt={10}>
-                    Visualizar Conteúdos
+                    Conteúdos Cadastrados
                 </Typography>
 
                 <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
@@ -131,8 +131,8 @@ const ConteudoADM = () => {
                     </Container>
                 )}
 
-                <Container sx={{ display: "flex", alignItems: "center", justifyContent: "center", visibility: conteudos.length === 0 ? "hidden" : "visible" }}>
-                    <ContentTable contents={conteudos} onDelete={handleDelete} />
+                <Container sx={{ display: "flex", alignItems: "center", justifyContent: "center", visibility: contents.length === 0 ? "hidden" : "visible" }}>
+                    <ContentTable contents={contents} onDelete={handleDelete} />
                 </Container>
             </Container>
         </>
