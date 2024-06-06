@@ -3,7 +3,7 @@
 var _app = _interopRequireDefault(require("../app"));
 var _debug = _interopRequireDefault(require("debug"));
 var _http = _interopRequireDefault(require("http"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var debug = (0, _debug["default"])("crud-express-firebase:server");
 
 /**

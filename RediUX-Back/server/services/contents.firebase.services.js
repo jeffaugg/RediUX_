@@ -18,7 +18,10 @@ class ContentServices {
                 response.json(contents)
             }
         )
-        .catch(error=>console.log(error))
+        .catch(error => {
+            console.error("Erro ao listar conteúdo:", error);
+            response.status(500).json({ error: "Erro interno ao listar conteúdo." });
+        });
     }
 
 
@@ -29,7 +32,10 @@ class ContentServices {
                     response.json({_id:docRef.id})
                 }
             )
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.error("Erro ao registrar conteúdo:", error);
+                response.status(500).json({ error: "Erro interno ao registrar conteúdo." });
+            });
     }
 
     static retrieve(request, response) {
@@ -37,20 +43,27 @@ class ContentServices {
         getDoc(docRef)
             .then(  
                 (content) => {
-                    const res = {
-                        titulo: content.data().titulo,
-                        tags: content.data().tags,
-                        midia: content.data().midia,
-                        descricao: content.data().descricao,
-                        link: content.data().link,
-                        autor: content.data().autor,
-                        imgUrl: content.data().imgUrl,
-                        file: content.data().file,
+                    if (content.exists()) {
+                        const res = {
+                            titulo: content.data().titulo,
+                            tags: content.data().tags,
+                            midia: content.data().midia,
+                            descricao: content.data().descricao,
+                            link: content.data().link,
+                            autor: content.data().autor,
+                            imgUrl: content.data().imgUrl,
+                            file: content.data().file,
+                        }
+                        response.json(res)
+                    } else {
+                        response.status(404).json({ error: "Conteúdo não encontrado." });
                     }
-                    response.json(res)
                 }
             )
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.error("Erro ao recuperar conteúdo:", error);
+                response.status(500).json({ error: "Erro interno ao recuperar conteúdo." });
+            });
     }
 
     static update = (request,response) => {
@@ -62,13 +75,19 @@ class ContentServices {
                     response.json({_id:request.params.id})
                 }
             )
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.error("Erro ao atualizar conteúdo:", error);
+                response.status(500).json({ error: "Erro interno ao atualizar conteúdo." });
+            });
     }
 
     static delete = (request,response) => {
         deleteDoc(doc(db, "content", request.params.id))
             .then(() => response.json({_id:request.params.id}))
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.error("Erro ao deletar conteúdo:", error);
+                response.status(500).json({ error: "Erro interno ao deletar conteúdo." });
+            });
     }
 
     static search(request, response) {
@@ -98,12 +117,11 @@ class ContentServices {
             });
             response.json(contents);
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+              console.error("Erro ao buscar conteúdo:", error);
+              response.status(500).json({ error: "Erro interno ao buscar conteúdo." });
+          });
       }
-
-
 }
-
-// module.exports = ContentServices 
 
 export default ContentServices

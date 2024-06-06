@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
+var _dotenv = _interopRequireDefault(require("dotenv"));
 require("firebase/firestore");
 var _express = _interopRequireDefault(require("express"));
 var _path = _interopRequireDefault(require("path"));
@@ -12,7 +13,13 @@ var _morgan = _interopRequireDefault(require("morgan"));
 var _index = _interopRequireDefault(require("./routes/index"));
 var _users = _interopRequireDefault(require("./routes/users"));
 var _contents = _interopRequireDefault(require("./routes/contents"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+// Importar o módulo dotenv e carregar as variáveis de ambiente do arquivo .env
+
+_dotenv["default"].config();
+
+// Importar "firebase/firestore" e outras dependências
+
 var app = (0, _express["default"])();
 
 // Definindo o mecanismo de visualização como Pug
@@ -39,5 +46,4 @@ app.use(function (req, res, next) {
 app.use('/', _index["default"]);
 app.use('/users', _users["default"]);
 app.use('/contents', _contents["default"]);
-var _default = app;
-exports["default"] = _default;
+var _default = exports["default"] = app;
