@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 import LoginForm from "../components/Login/LoginForm";
 import LoginButton from "../components/Buttons/LoginButton";
 import NavigationLink from "../components/NavigationLink/NavigationLink";
+import CustomToolBar from "../components/CustomToolBar/CustomToolBar";
+import BackButton from "../components/Buttons/BackButton";
 
 const Login = () => {
   const { setGlobalState, globalState, handleLogin } = useGlobalState();
@@ -40,44 +42,50 @@ const Login = () => {
   };
 
   return (
+  <>
+
+    <CustomToolBar>
+      <BackButton/>
+    </CustomToolBar>
+
     <Container
       sx={{
+        paddingTop: 10,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         mt: 10,
       }}
     >
-      <Box>
-        <img src={Ilustracao} alt="Ilustração" width={500} />
-      </Box>
+        <Box>
+          <img src={Ilustracao} alt="Ilustração" width={500} />
+        </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          backgroundColor: "#E9ECEF",
-          padding: 6,
-          borderRadius: 2,
-        }}
-      >
-        <img src={Logo} alt="Logo" height={75} />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            backgroundColor: "#E9ECEF",
+            padding: 6,
+            borderRadius: 2,
+          }}
+        >
+          <img src={Logo} alt="Logo" height={75} />
 
-        <LoginForm
-          handleUserChange={handleEmailChange}
-          handlePasswordChange={handlePasswordChange}
-          handleKeyPress={handleKeyPress}
-        />
+          <LoginForm
+            handleUserChange={handleEmailChange}
+            handlePasswordChange={handlePasswordChange}
+            handleKeyPress={handleKeyPress} />
 
-        <NavigationLink 
-          to={"/reset-password"} 
-          children={"Esqueci minha senha"}
-        />
+          <NavigationLink
+            to={"/reset-password"}
+            children={"Esqueci minha senha"} />
 
-        <LoginButton handleSubmit={handleSubmit} />
-      </Box>
-    </Container>
+          <LoginButton handleSubmit={handleSubmit} />
+        </Box>
+      </Container>
+    </>
   );
 };
 
