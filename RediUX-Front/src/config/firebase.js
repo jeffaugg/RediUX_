@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
@@ -12,5 +12,18 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const imageDb = getStorage(app);
+const auth = getAuth(app);
+const imageDb = getStorage(app);
+
+export { auth, createUserWithEmailAndPassword, imageDb };
+
+// Create a new user with email and password
+// export const signUp = async (email, password) => {
+//   try {
+//     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+//     return userCredential.user;
+//   } catch (error) {
+//     console.error("Error creating user: ", error);
+//     throw error;
+//   }
+// };

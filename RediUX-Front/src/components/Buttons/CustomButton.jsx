@@ -10,21 +10,22 @@ const CustomButton = ({
       variant="outlined"
       size={size}
       sx={{
-        height: { height },
-        mt: { mt },
-        ml: { ml },
-        mb: { mb },
-        backgroundColor: { backgroundColor },
-        color: { color },
+        height: height, // Ajuste correto da propriedade height
+        mt: mt, // Ajuste correto da propriedade mt
+        ml: ml, // Ajuste correto da propriedade ml
+        mb: mb, // Ajuste correto da propriedade mb
+        backgroundColor: backgroundColor, // Ajuste correto da propriedade backgroundColor
+        color: color, // Ajuste correto da propriedade color
         borderColor: backgroundColor,
         '&:hover': {
           backgroundColor: hoverBackgroundColor,
           color: hoverColor,
         },
-        ...props,
+        ...sx, // Aplicar estilos adicionais passados por props
       }}
       href={href}
       target={target}
+      {...props} // Aplicar qualquer outra propriedade passada para o botão
     >
       {text}
     </Button>
