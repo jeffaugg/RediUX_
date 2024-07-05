@@ -19,7 +19,7 @@ const CustomToolBar = ({ children, isADM }) => {
       .then(() => {
         setGlobalState({ ...globalState, isAuth: false });
         localStorage.setItem('isAuth', false);
-        window.location.href = "/ADM/Login";
+        window.location.href = "/login";
       })
       .catch((error) => {
         console.log(error);
