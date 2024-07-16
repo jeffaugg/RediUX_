@@ -72,6 +72,7 @@ Siga os passos com atenção para assegurar a correta configuração do projeto.
 - **Segurança:** [SECURITY](SECURITY.md)
 - **Template de Pull Request:** [PULL_REQUEST_TEMPLATE](.github/PULL_REQUEST_TEMPLATE.md)
 - **Template de Issue:** [ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE.md)
+- **Padroes de Commits:** [COMMITS_GUIDE](https://github.com/RediUX/Padroes-de-Commits/blob/main/README.md)
 
 ## 📌 Branches
 
