@@ -1,3 +1,8 @@
+// Importar o módulo dotenv e carregar as variáveis de ambiente do arquivo .env
+import dotenv from 'dotenv';
+dotenv.config();
+
+// Importar "firebase/firestore" e outras dependências
 import "firebase/firestore";
 import express from 'express';
 import path from 'path';

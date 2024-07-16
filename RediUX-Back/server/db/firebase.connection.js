@@ -1,15 +1,17 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+
+// Carregar variáveis de ambiente do arquivo .env
+require('dotenv').config();
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC8gog_UfFiU7Cap7qiptKLVBI89X_hM6I",
-  authDomain: "project-rediux.firebaseapp.com",
-  projectId: "project-rediux",
-  storageBucket: "project-rediux.appspot.com",
-  messagingSenderId: "365234318784",
-  appId: "1:365234318784:web:92cb0aedfddc9e449a2c25"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID
 };
 
 // Initialize Firebase
@@ -17,7 +19,5 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
-
-// Initialize Cloud Storage and get a reference to the service
 
 export default db;

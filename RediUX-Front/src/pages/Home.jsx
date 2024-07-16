@@ -1,30 +1,40 @@
-import { Button, Box, Container, InputAdornment, TextField, FormControl, InputLabel, Select, MenuItem, Typography, Divider } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { useState } from "react";
-import Logo from "../assets/logo.svg";
-import { Article, Book, Mic, SmartDisplay } from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import Tollbar from "../components/ToolbarU/Toolbar";
+import { Box, Container, Typography, Divider } from "@mui/material";
+import { useState, useEffect, useCallback } from "react";
+
+import CustomToolbar from "../components/CustomToolBar/CustomToolBar";
+import SearchField from "../components/SearchField/SearchField";
+import { tags, midiaTypes } from "../constants/Data";
+import TagSelector from "../components/TagSelector/TagSelector";
+import MediaButtonsContainer from "../components/MidiaButtonsContainer/MidiaButtonsContainer";
+import Logo from "../components/Logo/Logo";
+import LogoImg from "../assets/logo.svg";
+import LogoImgSml from "../assets/logo-sml.svg";
+import NavigationLink from "../components/NavigationLink/NavigationLink";
 
 const Home = () => {
     const [search, setSearch] = useState("");
-    const [, setMidia] = useState({ livro: false, artigo: false, video: false, podcast: false })
+    const [, setMidia] = useState({
+        livro: false, 
+        artigo: false, 
+        video: false, 
+        podcast: false 
+    })
+    const [tag, setTag] = useState('');
+    const handleSetMidia = useCallback((midia) => {
+        setMidia(midia);
+    }, [setMidia]);
 
     const handleChange = (event) => {
         setSearch(event.target.value);
     };
       
-      const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = useCallback((event) => {
+        if (event) event.preventDefault();
         const searchTerm = search.trim();
-        if (searchTerm) {
-            const url = `/results?term=${searchTerm}`;
-            window.location.href = url;
-          }
-        };
-
-    const [tag, setTag] = useState('');
-
+        const url = `/results?term=${searchTerm}&tag=${tag}`;
+        window.location.href = url;
+    }, [search, tag]);
+    
     const tagChange = (event) => {
         setTag(event.target.value);
     };
@@ -35,21 +45,22 @@ const Home = () => {
         }
     };
 
+    useEffect(() => {
+        if (tag) {
+            handleSubmit();
+        }
+    }, [tag, handleSubmit]);
+
     return (
         <>
-            <Tollbar />
+            <CustomToolbar>
+                <a href="/">
+                    <img src={LogoImgSml} height={38} alt="logo-sml" />
+                </a>
+            </CustomToolbar>
 
             <Container maxWidth="md" sx={{ mt: 20 }}>
-                <Box
-                    sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        margin: 10,
-                        height: 90
-                    }}
-                >
-                    <img src={Logo} alt="Logo" height={100}/>
-                </Box>
+                <Logo src={LogoImg} alt="Logo" height={100} />
 
                 <Box
                     sx={{
@@ -57,163 +68,33 @@ const Home = () => {
                         justifyContent: "center"
                     }}
                 >
-                    <TextField
-                        id="search"
-                        type="search"
-                        label="Pesquisar Conteúdo"
+                    <SearchField
                         value={search}
                         onChange={handleChange}
                         onKeyDown={handleKeyPress}
-                        sx={{ width: 600 }}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                        <Button
-                                            sx={{ height: 55 }}
-                                            onClick={handleSubmit}
-                                        >
-                                            <SearchIcon />
-                                        </Button>
-                                </InputAdornment>
-                            ),
-                        }}
+                        onSubmit={handleSubmit}
+                        width={600}
                     />
 
-                    <FormControl variant="outlined">
-                        <InputLabel id="demo-simple-select-filled-label">Tags</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-filled-label"
-                            id="demo-simple-select-filled"
-                            value={tag}
-                            onChange={tagChange}
-                            sx={{
-                                width: 200,
-                                ml: 1,
-                            }}
-                        >
-                            <MenuItem
-                                value=""
-                            >
-                            </MenuItem>
-                            <MenuItem value={"Carreira"}>Carreira</MenuItem>
-                            <MenuItem value={"FundamentosDeUX"}>Fundamentos de UX</MenuItem>
-                            <MenuItem value={"DesignDeInteração"}>Design de Interação</MenuItem>
-                            <MenuItem value={"UIDesign"}>UI Design</MenuItem>
-                            <MenuItem value={"ArquiteturaDaInformacao"}>Arquitetura da Informação</MenuItem>
-                        </Select>
-                    </FormControl>
+                    <TagSelector
+                        value={tag}
+                        onChange={tagChange}
+                        options={tags}
+                    />
                 </Box>
 
-                <Divider
-                    sx={{ mt: 5 }}
-                />
+                <Divider sx={{ mt: 5 }} />
 
                 <Typography
                     variant="h6"
                     component="h2"
-                    sx={{
-                        mt: 5,
-                        color: "gray"
-                    }}
+                    sx={{ mt: 5, color: "gray" }}
                 >
                     Navegue por Tipo de Mídia
                 </Typography>
 
-                <Box
-                    sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        mt: 2,
-                    }}
-                >
-                    <Link to={`/results?term=${search}&media=livro`}>
-                        <Button
-                            variant="contained"
-                            startIcon={<Book />}
-                            onClick={() => setMidia("livro")}
-                            sx={{
-                                boxShadow: "none",
-                                width: 200,
-                                margin: 1,
-                                backgroundColor: "#BECBEA",
-                                color: "#0C2D8A",
-                                '&:hover': {
-                                    backgroundColor: "#0C2D8A",
-                                    color: "#BECBEA",
-                                    boxShadow: "none"
-                                }
-                            }}
-                        >
-                            Livro
-                        </Button>
-                    </Link>
-                    
-                    <Link to={`/results?term=${search}&media=artigo`}>
-                        <Button
-                            variant="contained"
-                            startIcon={<Article />}
-                            onClick={() => setMidia("artigo")}
-                            sx={{
-                                boxShadow: "none",
-                                width: 200,
-                                margin: 1,
-                                backgroundColor: "#BECBEA",
-                                color: "#0C2D8A",
-                                '&:hover': {
-                                    backgroundColor: "#0C2D8A",
-                                    color: "#BECBEA",
-                                    boxShadow: "none"
-                                }
-                            }}
-                        >
-                            Artigo
-                        </Button>
-                    </Link>
-
-                    <Link to={`/results?term=${search}&media=podcast`}>
-                        <Button
-                            variant="contained"
-                            startIcon={<Mic />}
-                            onClick={() => setMidia("podcast")}
-                            sx={{
-                                boxShadow: "none",
-                                width: 200,
-                                margin: 1,
-                                backgroundColor: "#BECBEA",
-                                color: "#0C2D8A",
-                                '&:hover': {
-                                    backgroundColor: "#0C2D8A",
-                                    color: "#BECBEA",
-                                    boxShadow: "none"
-                                }
-                            }}
-                        >
-                            Podcast
-                        </Button>
-                    </Link>
-
-                    <Link to={`/results?term=${search}&media=video`}>
-                        <Button
-                            variant="contained"
-                            startIcon={<SmartDisplay />}
-                            onClick={() => setMidia("videos")}
-                            sx={{
-                                boxShadow: "none",
-                                width: 200,
-                                margin: 1,
-                                backgroundColor: "#BECBEA",
-                                color: "#0C2D8A",
-                                '&:hover': {
-                                    backgroundColor: "#0C2D8A",
-                                    color: "#BECBEA",
-                                    boxShadow: "none"
-                                }
-                            }}
-                        >
-                            Vídeo
-                        </Button>
-                    </Link>
-                </Box>
+                <MediaButtonsContainer midiaTypes={midiaTypes} search={search} handleSetMidia={handleSetMidia} />
+                
             </Container>
 
             <Box
@@ -222,23 +103,12 @@ const Home = () => {
                     justifyContent: "center",
                     mt: 25,
                     mb: 5,
-                    '& > :not(style)': { m: 2 }, // Adiciona espaçamento entre os elementos filhos
+                    '& > :not(style)': { m: 2 },
                 }}
             >
-                <Link to="/ADM/login">
-                    <Button>
-                        Administração
-                    </Button>
-                </Link>
-
-                <Link to="/about">
-                    <Button> 
-                        Sobre
-                    </Button>
-                </Link>
-
+                <NavigationLink to="/login">Administração</NavigationLink>
+                <NavigationLink to="/about">Sobre</NavigationLink>
             </Box>
-
         </>
     );
 }

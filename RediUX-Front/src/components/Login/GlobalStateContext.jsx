@@ -1,16 +1,40 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../config/firebase'; 
 
-const GlobalStateContext = createContext();
+export const GlobalStateContext = createContext();
 
 export const GlobalStateProvider = ({ children }) => {
   const [globalState, setGlobalState] = useState({
-    user: '',
-    password: '',
-    estaAutenticado: null,
+    user: null,
+    password: null,
+    isAuth: false,
   });
 
+  const handleLogin = async (email, password) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      setGlobalState({
+        user: userCredential.user,
+        password: null,
+        isAuth: true,
+      });
+      localStorage.setItem('isAuth', true); 
+      window.location.href = "/ADM/ListaConteudos";
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+    }
+  };
+
+  useEffect(() => {
+    const storedAuthState = localStorage.getItem('isAuth');
+    if (storedAuthState === 'true') {
+      setGlobalState((prevState) => ({...prevState, isAuth: true }));
+    }
+  }, []);
+
   return (
-    <GlobalStateContext.Provider value={{ globalState, setGlobalState }}>
+    <GlobalStateContext.Provider value={{ globalState, setGlobalState, handleLogin }}>
       {children}
     </GlobalStateContext.Provider>
   );

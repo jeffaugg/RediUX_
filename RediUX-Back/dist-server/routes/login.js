@@ -13,5 +13,4 @@ router.post('/login', function (req, res, next) {
   var isLogin = loginService.login(req.body);
   res.json(isLogin);
 });
-var _default = router;
-exports["default"] = _default;
+var _default = exports["default"] = router;

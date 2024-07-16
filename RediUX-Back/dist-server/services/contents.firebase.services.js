@@ -6,19 +6,19 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _firestore = require("firebase/firestore");
 var _firebase = _interopRequireDefault(require("../db/firebase.connection"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var ContentServices = /*#__PURE__*/function () {
   function ContentServices() {
     _classCallCheck(this, ContentServices);
   }
-  _createClass(ContentServices, null, [{
+  return _createClass(ContentServices, null, [{
     key: "list",
     value: function list(request, response) {
       (0, _firestore.getDocs)((0, _firestore.collection)(_firebase["default"], "content")).then(function (contentSnapshot) {
@@ -48,7 +48,10 @@ var ContentServices = /*#__PURE__*/function () {
         });
         response.json(contents);
       })["catch"](function (error) {
-        return console.log(error);
+        console.error("Erro ao listar conteúdo:", error);
+        response.status(500).json({
+          error: "Erro interno ao listar conteúdo."
+        });
       });
     }
   }, {
@@ -56,19 +59,28 @@ var ContentServices = /*#__PURE__*/function () {
     value: function retrieve(request, response) {
       var docRef = (0, _firestore.doc)(_firebase["default"], "content", request.params.id);
       (0, _firestore.getDoc)(docRef).then(function (content) {
-        var res = {
-          titulo: content.data().titulo,
-          tags: content.data().tags,
-          midia: content.data().midia,
-          descricao: content.data().descricao,
-          link: content.data().link,
-          autor: content.data().autor,
-          imgUrl: content.data().imgUrl,
-          file: content.data().file
-        };
-        response.json(res);
+        if (content.exists()) {
+          var res = {
+            titulo: content.data().titulo,
+            tags: content.data().tags,
+            midia: content.data().midia,
+            descricao: content.data().descricao,
+            link: content.data().link,
+            autor: content.data().autor,
+            imgUrl: content.data().imgUrl,
+            file: content.data().file
+          };
+          response.json(res);
+        } else {
+          response.status(404).json({
+            error: "Conteúdo não encontrado."
+          });
+        }
       })["catch"](function (error) {
-        return console.log(error);
+        console.error("Erro ao recuperar conteúdo:", error);
+        response.status(500).json({
+          error: "Erro interno ao recuperar conteúdo."
+        });
       });
     }
   }, {
@@ -81,7 +93,6 @@ var ContentServices = /*#__PURE__*/function () {
         if (searchMedia === "null") {
           return true; // Permitir a pesquisa sem considerar o valor de 'media'
         }
-
         return objMedia[searchMedia];
       };
       console.log("Valor do parâmetro 'media':", request.query.media);
@@ -114,19 +125,24 @@ var ContentServices = /*#__PURE__*/function () {
         });
         response.json(contents);
       })["catch"](function (error) {
-        return console.log(error);
+        console.error("Erro ao buscar conteúdo:", error);
+        response.status(500).json({
+          error: "Erro interno ao buscar conteúdo."
+        });
       });
     }
   }]);
-  return ContentServices;
-}(); // module.exports = ContentServices 
+}();
 _defineProperty(ContentServices, "register", function (request, response) {
   (0, _firestore.addDoc)((0, _firestore.collection)(_firebase["default"], "content"), request.body).then(function (docRef) {
     response.json({
       _id: docRef.id
     });
   })["catch"](function (error) {
-    return console.log(error);
+    console.error("Erro ao registrar conteúdo:", error);
+    response.status(500).json({
+      error: "Erro interno ao registrar conteúdo."
+    });
   });
 });
 _defineProperty(ContentServices, "update", function (request, response) {
@@ -135,7 +151,10 @@ _defineProperty(ContentServices, "update", function (request, response) {
       _id: request.params.id
     });
   })["catch"](function (error) {
-    return console.log(error);
+    console.error("Erro ao atualizar conteúdo:", error);
+    response.status(500).json({
+      error: "Erro interno ao atualizar conteúdo."
+    });
   });
 });
 _defineProperty(ContentServices, "delete", function (request, response) {
@@ -144,8 +163,10 @@ _defineProperty(ContentServices, "delete", function (request, response) {
       _id: request.params.id
     });
   })["catch"](function (error) {
-    return console.log(error);
+    console.error("Erro ao deletar conteúdo:", error);
+    response.status(500).json({
+      error: "Erro interno ao deletar conteúdo."
+    });
   });
 });
-var _default = ContentServices;
-exports["default"] = _default;
+var _default = exports["default"] = ContentServices;

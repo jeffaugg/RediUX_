@@ -41,4 +41,3 @@ Os mantenedores do projeto que não seguem ou não aplicam o Código de Conduta 
 ## Atribuição
 
 Este Código de Conduta é adaptado do Contributor Covenant, versão 1.4, disponível em https://www.contributor-covenant.org/version/1/4/code-of-conduct.html.
-
