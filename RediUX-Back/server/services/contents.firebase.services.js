@@ -99,7 +99,7 @@ class ContentServices {
         
         const contentHasMedia = (objMedia) => {
             if (searchMedia === "null") {
-                return true; // Permitir a pesquisa sem considerar o valor de 'media'
+                return true; 
             }
             return objMedia[searchMedia];
         }

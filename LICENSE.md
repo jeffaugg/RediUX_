@@ -1,19 +1,19 @@
-# Licença
-
-Todos os direitos reservados.
+# Licença de Código Aberto
 
 ## Aviso de Direitos Autorais
 
-Este documento e todo o conteúdo presente no repositório RediUX, incluindo, mas não se limitando a, código, documentação, gráficos, sons e outros arquivos, são propriedade exclusiva de **RediUX** e seus colaboradores.
+Este documento e todo o conteúdo presente no repositório RediUX, incluindo, mas não se limitando a, código, documentação, gráficos, sons e outros arquivos, são propriedade de **RediUX** e seus colaboradores.
+
+## Permissões
+
+Os usuários têm permissão para:
+
+- Usar, copiar e distribuir o código fonte e a documentação do repositório para qualquer propósito, incluindo fins comerciais, desde que os avisos de direitos autorais e permissões sejam mantidos em todas as cópias.
+- Modificar o código fonte e criar obras derivadas, desde que essas modificações e obras derivadas sejam também licenciadas como código aberto sob os mesmos termos.
 
 ## Restrições
 
-É proibido reproduzir, distribuir, modificar, criar obras derivadas, exibir publicamente, executar publicamente, republicar, baixar, armazenar ou transmitir qualquer parte do conteúdo, exceto nas seguintes condições:
-
-- Os usuários podem armazenar cópias de conteúdo temporariamente em cache para uso pessoal e não comercial.
-- Os usuários podem imprimir uma cópia do conteúdo para uso pessoal e não comercial.
-
-Nenhuma outra parte deste conteúdo pode ser copiada, modificada, distribuída, reproduzida ou transmitida de qualquer forma sem a permissão expressa por escrito de **RediUX**.
+- Os usuários não podem usar o nome **RediUX** ou os nomes de seus colaboradores para endossar ou promover produtos derivados deste software sem permissão prévia por escrito.
 
 ## Isenção de Responsabilidade
 
@@ -25,7 +25,7 @@ O conteúdo é fornecido 'como está', sem garantias de qualquer tipo, expressas
 
 ## Contato
 
-Para obter permissão para usar o conteúdo ou em caso de dúvidas sobre esta licença, entre em contato com **RediUX** através do repositório no GitHub.
+Para obter mais informações sobre esta licença ou em caso de dúvidas, entre em contato com **RediUX** através do repositório no GitHub.
 
 ---
 

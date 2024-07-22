@@ -91,7 +91,7 @@ var ContentServices = /*#__PURE__*/function () {
       var contentCollectionRef = (0, _firestore.collection)(_firebase["default"], "content");
       var contentHasMedia = function contentHasMedia(objMedia) {
         if (searchMedia === "null") {
-          return true; // Permitir a pesquisa sem considerar o valor de 'media'
+          return true;
         }
         return objMedia[searchMedia];
       };

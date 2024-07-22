@@ -16,14 +16,3 @@ const auth = getAuth(app);
 const imageDb = getStorage(app);
 
 export { auth, createUserWithEmailAndPassword, imageDb };
-
-// Create a new user with email and password
-// export const signUp = async (email, password) => {
-//   try {
-//     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-//     return userCredential.user;
-//   } catch (error) {
-//     console.error("Error creating user: ", error);
-//     throw error;
-//   }
-// };
