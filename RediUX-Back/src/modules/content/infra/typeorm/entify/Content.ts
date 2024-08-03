@@ -1,24 +1,45 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Tag } from "./Tag";
 
-@Entity('content')
+@Entity("content")
 class Content {
-    @PrimaryColumn()
-      id: string
+  @PrimaryGeneratedColumn("increment")
+  id: number;
 
-    @Column()
-      title: string
+  @Column()
+  title: string;
 
-    @Column()
-      autor: string
+  @Column()
+  autor: string;
 
-    @Column()
-      description: string
+  @Column()
+  description: string;
 
-    @Column()
-      link: string
+  @Column()
+  link: string;
 
-    @Column()
-      media_type: string
+  @Column()
+  media_type: string;
+
+  @ManyToMany(() => Tag, (tag) => tag.id)
+  @JoinTable({
+    name: "content_tags",
+    joinColumn: {
+      name: "content_id",
+      referencedColumnName: "id",
+    },
+    inverseJoinColumn: {
+      name: "tag_id",
+      referencedColumnName: "id",
+    },
+  })
+  tags: Tag[];
 }
 
-export { Content }
+export { Content };
