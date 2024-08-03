@@ -1,6 +1,9 @@
 import "dotenv/config";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import { UserAdmin } from "./modules/users/infra/typeorm/entify/UserAdmin";
+import { Content } from "./modules/content/infra/typeorm/entify/Content";
+import { Tag } from "./modules/content/infra/typeorm/entify/Tag";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -9,9 +12,6 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: "rediux",
-  synchronize: true,
-  logging: true,
-  entities: ["./src/modules/*/infra/typeorm/entity/*.ts"],
-  subscribers: [],
+  entities: [UserAdmin, Content, Tag],
   migrations: ["./src/shared/infra/typeorm/migration/*.ts"],
 });
