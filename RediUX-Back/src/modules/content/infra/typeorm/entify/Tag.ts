@@ -1,10 +1,15 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm'
+import { Column, Entity, ManyToMany, PrimaryColumn } from "typeorm";
+import { Content } from "./Content";
 
-@Entity('tags')
+@Entity("tag")
 class Tag {
-    @PrimaryColumn()
-      id: string
+  @PrimaryColumn()
+  id: string;
 
-    @Column()
-      name: string
+  @Column()
+  name: string;
+
+  @ManyToMany(() => Content, (content) => content.id)
+  content: Content[];
 }
+export { Tag };

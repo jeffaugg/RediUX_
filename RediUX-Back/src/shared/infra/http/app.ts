@@ -1,7 +1,13 @@
-import express from 'express'
-import 'reflect-metadata'
-const app = express()
+import express from "express";
+import { AppDataSource } from "../../../data-source";
+import { routes } from "./routes";
+import "../../container/index";
 
-app.use(express.json())
+const app = express();
 
-export { app }
+AppDataSource.initialize().then(() => {
+  app.use(express.json());
+  app.use(routes);
+});
+
+export { app };
