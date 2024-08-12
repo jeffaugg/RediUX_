@@ -16,6 +16,7 @@ class CreateContentUseCase {
     private contentRepository: IContentRepository,
   ) {}
 
+  // this method creates a new content in the database
   async execute({ title, autor, description, link, media_type }: IRequest) {
     const content = await this.contentRepository.create({
       title,
