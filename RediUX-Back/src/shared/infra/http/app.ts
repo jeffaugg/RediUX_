@@ -1,7 +1,7 @@
 import express from "express";
 import { AppDataSource } from "../../../data-source";
-import { routes } from "./routes";
 import "../../container/index";
+import { routes } from "./routes";
 
 const app = express();
 
