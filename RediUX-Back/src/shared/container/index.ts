@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 
-import { IContentRepository } from "../../modules/content/repository/interface/IContentRepository";
 import { ContentRepository } from "../../modules/content/repository/ContentRepository";
+import { IContentRepository } from "../../modules/content/repository/interface/IContentRepository";
 
 container.registerSingleton<IContentRepository>(
   "ContentRepository",

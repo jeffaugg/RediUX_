@@ -8,15 +8,21 @@ class CreateContentController {
 
     const createContentUseCase = container.resolve(CreateContentUseCase);
 
-    const content = await createContentUseCase.execute({
-      title,
-      autor,
-      description,
-      link,
-      media_type,
-    });
+    try {
+      const content = await createContentUseCase.execute({
+        title,
+        autor,
+        description,
+        link,
+        media_type,
+      });
 
-    return response.status(201).json(content);
+      return response.status(201).json(content);
+    } catch (error) {
+      return response.status(400).json({
+        message: error.message || "Unexpected error.",
+      });
+    }
   }
 }
 
