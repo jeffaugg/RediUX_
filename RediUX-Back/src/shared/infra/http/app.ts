@@ -1,14 +1,16 @@
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
+import swaggerUi from "swagger-ui-express";
 import { AppDataSource } from "../../../data-source";
 import "../../container/index";
 import { routes } from "./routes";
 import { AppError } from "../../erros/AppError";
-
+import SwaggerFile from "../../../swagger.json";
 const app = express();
 
 AppDataSource.initialize().then(() => {
   app.use(express.json());
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(SwaggerFile));
   app.use(routes);
   app.use(
     // eslint-disable-next-line
