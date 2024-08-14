@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { GetContentUseCase } from "./getContentUseCase";
+import { GetContentUseCase } from "./GetContentUseCase";
 
 class GetContentController {
   // this method returns a list of contents based on the id or title passed as a parameter
