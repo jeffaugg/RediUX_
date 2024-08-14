@@ -4,7 +4,7 @@ import { CreateContentUseCase } from "./CreateContentUseCase";
 
 class CreateContentController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { title, autor, description, link, media_type } = request.body;
+    const { title, autor, description, link, media_type, tags } = request.body;
 
     const createContentUseCase = container.resolve(CreateContentUseCase);
 
@@ -15,6 +15,7 @@ class CreateContentController {
         description,
         link,
         media_type,
+        tags,
       });
 
       return response.status(201).json(content);
