@@ -1,4 +1,5 @@
 import { Content } from "../../infra/typeorm/entity/Content";
+import { Tag } from "../../infra/typeorm/entity/Tag";
 
 interface IcreateContentDTO {
   title: string;
@@ -6,6 +7,7 @@ interface IcreateContentDTO {
   description: string;
   link: string;
   media_type: string;
+  tags: Tag[];
 }
 
 interface IContentRepository {
@@ -15,6 +17,7 @@ interface IContentRepository {
     description,
     link,
     media_type,
+    tags,
   }: IcreateContentDTO): Promise<Content>;
 
   update(
