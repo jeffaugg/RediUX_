@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { CreateContentController } from "../../../../../modules/content/useCase/createContent/CreateContentController";
 
+import { CreateContentController } from "../../../../../modules/content/useCase/createContent/CreateContentController";
 import { UpdateContentController } from "../../../../../modules/content/useCase/updateContent/UpdateContentController";
-import { DeleteContentController } from "../../../../../modules/content/useCase/deleteContent/deleteContentController";
-import { GetContentController } from "../../../../../modules/content/useCase/getContent/getContentController";
+import { DeleteContentController } from "../../../../../modules/content/useCase/deleteContent/DeleteContentController";
+import { GetContentController } from "../../../../../modules/content/useCase/getContent/GetContentController";
 
 const contentRoutes = Router();
 
