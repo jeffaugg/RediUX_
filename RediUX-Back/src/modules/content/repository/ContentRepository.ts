@@ -1,15 +1,18 @@
-import { Repository } from "typeorm";
+import { In, Repository } from "typeorm";
 import { Content } from "../infra/typeorm/entity/Content";
 import {
   IContentRepository,
   IcreateContentDTO,
 } from "./interface/IContentRepository";
 import { AppDataSource } from "../../../data-source";
+import { Tag } from "../infra/typeorm/entity/Tag";
 
 class ContentRepository implements IContentRepository {
   private repository: Repository<Content>;
+  private tagRepository: Repository<Tag>;
   constructor() {
     this.repository = AppDataSource.getRepository(Content);
+    this.tagRepository = AppDataSource.getRepository(Tag);
   }
 
   /*
@@ -21,6 +24,7 @@ class ContentRepository implements IContentRepository {
     description,
     link,
     media_type,
+    tags,
   }: IcreateContentDTO): Promise<Content> {
     const content = this.repository.create({
       title,
@@ -29,6 +33,15 @@ class ContentRepository implements IContentRepository {
       link,
       media_type,
     });
+
+    if (tags && tags.length > 0) {
+      const tagEntities = await this.tagRepository.find({
+        where: {
+          id: In(tags.map((tag) => tag.id)),
+        },
+      });
+      content.tags = tagEntities;
+    }
 
     await this.repository.save(content);
     return content;
@@ -75,5 +88,4 @@ class ContentRepository implements IContentRepository {
     await this.repository.delete(id);
   }
 }
-
 export { ContentRepository };
