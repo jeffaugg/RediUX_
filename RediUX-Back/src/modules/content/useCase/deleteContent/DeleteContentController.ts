@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { DeleteContentUseCase } from "./deleteContentUseCase";
 import { container } from "tsyringe";
+import { DeleteContentUseCase } from "./DeleteContentUseCase";
 
 class DeleteContentController {
   async handle(req: Request, res: Response): Promise<Response> {
