@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { Content } from "../../infra/typeorm/entity/Content";
 import { IContentRepository } from "../../repository/interface/IContentRepository";
+import { AppError } from "../../../../shared/erros/AppError";
 
 @injectable()
 class UpdateContentUseCase {
@@ -23,7 +24,7 @@ class UpdateContentUseCase {
     const contentUpdated = await this.contentRepository.update(id, data);
 
     if (!contentUpdated) {
-      throw new Error("Content not found");
+      throw new AppError("Content not found");
     }
     return contentUpdated;
   }
