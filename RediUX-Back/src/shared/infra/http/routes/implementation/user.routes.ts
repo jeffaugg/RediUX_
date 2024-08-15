@@ -6,7 +6,7 @@ const userRouter = Router();
 
 const createUserAdminController = new CreateUserAdminController();
 const authUserAdminController = new AuthUserAdminController();
-userRouter.post("/signUp", createUserAdminController.handle);
-userRouter.post("/signIn", authUserAdminController.handle);
+userRouter.post("/signup", createUserAdminController.handle);
+userRouter.post("/signin", authUserAdminController.handle);
 
 export { userRouter };
