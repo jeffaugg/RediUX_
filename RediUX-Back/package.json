@@ -6,7 +6,7 @@
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "typeorm": "typeorm-ts-node-commonjs",
-    "migration:run": "typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts",
+    "migration:run": "docker exec -it back-rediux npx typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts",
     "migration:create": "cd ./src/shared/infra/typeorm/migration && typeorm-ts-node-commonjs migration:create",
     "migration:generate": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:generate ./src/shared/infra/typeorm/migration/default"
   },
