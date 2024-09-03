@@ -9,7 +9,8 @@ import SwaggerFile from "../../../swagger.json";
 import cors from "cors";
 const app = express();
 
-AppDataSource.initialize().then(() => {
+AppDataSource.initialize().then(async () => {
+  await AppDataSource.runMigrations();
   app.use(cors());
   app.use(express.json());
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(SwaggerFile));
