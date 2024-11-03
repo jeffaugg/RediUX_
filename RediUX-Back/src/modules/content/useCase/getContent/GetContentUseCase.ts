@@ -15,6 +15,7 @@ class GetContentUseCase {
     title?: string;
     page?: number;
     limit?: number;
+    tag_id?: number;
   }): Promise<Content[]> {
     return this.contentRepository.list(data);
   }

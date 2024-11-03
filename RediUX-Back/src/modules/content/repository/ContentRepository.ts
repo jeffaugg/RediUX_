@@ -75,14 +75,20 @@ class ContentRepository implements IContentRepository {
     title?: string;
     page?: number;
     limit?: number;
+    tag_id?: number;
   }): Promise<Content[]> {
-    const { id, title, page = 1, limit = 10 } = data;
+    const { id, title, page = 1, limit = 10, tag_id } = data;
+
     const queryBuilder = this.repository.createQueryBuilder("content");
 
-    if (id) {
-      queryBuilder.where("content.id = :id", { id });
+    if (tag_id) {
+      queryBuilder
+        .innerJoin("content.tags", "tag")
+        .where("tag.id = :tag_id", { tag_id });
     }
-    if (title) {
+    if (id) {
+      queryBuilder.andWhere("content.id = :id", { id });
+    } else if (title) {
       queryBuilder.andWhere("content.title LIKE :title", {
         title: `%${title}%`,
       });
