@@ -8,7 +8,7 @@
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:run": "docker exec -it back-rediux npx typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts",
     "migration:create": "cd ./src/shared/infra/typeorm/migration && typeorm-ts-node-commonjs migration:create",
-    "migration:generate": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:generate ./src/shared/infra/typeorm/migration/default"
+    "migration:generate": "docker exec -it back-rediux npx typeorm-ts-node-commonjs -d ./src/data-source.ts migration:generate ./src/shared/infra/typeorm/migration/default"
   },
   "author": "",
   "license": "ISC",
