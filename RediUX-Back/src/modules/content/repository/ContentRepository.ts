@@ -81,6 +81,8 @@ class ContentRepository implements IContentRepository {
 
     const queryBuilder = this.repository.createQueryBuilder("content");
 
+    queryBuilder.leftJoinAndSelect("content.tags", "tag");
+
     if (tag_id) {
       queryBuilder
         .innerJoin("content.tags", "tag")
