@@ -12,6 +12,8 @@ async function createInitialData() {
 
   if (existingAdmin) {
     console.log(`Usuário administrador ${existingAdmin.email} já existe.`);
+    AppDataSource.destroy();
+    return;
   }
 
   const hashedPassword = await bcrypt.hash(process.env.ADM_PASS, 10);
