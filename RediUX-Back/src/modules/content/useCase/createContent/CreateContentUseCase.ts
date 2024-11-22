@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
 import { IContentRepository } from "../../repository/interface/IContentRepository";
-import { Tag } from "../../infra/typeorm/entity/Tag";
 import { ITagRepository } from "../../repository/interface/ITagRepository";
 import { AppError } from "../../../../shared/erros/AppError";
+import { ITag } from "../../infra/typeorm/entity/interface/ITag";
 
 interface IRequest {
   title: string;
@@ -10,7 +10,7 @@ interface IRequest {
   description: string;
   link: string;
   media_type: string;
-  tags: Tag[];
+  tags: ITag[];
 }
 
 @injectable()

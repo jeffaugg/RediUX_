@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { UpdateContentUseCase } from "./UpdateContentUseCase";
 import { container } from "tsyringe";
+import { Tag } from "../../infra/typeorm/entity/Tag";
 
 class UpdateContentController {
   async updateContent(req: Request, res: Response): Promise<Response> {
@@ -14,6 +15,7 @@ class UpdateContentController {
         description?: string;
         link?: string;
         media_type?: string;
+        tags?: Tag[];
       } = req.body;
 
       // Check if ID is valid
@@ -30,8 +32,11 @@ class UpdateContentController {
       const updatedContent = await updateContentUseCase.execute(idInt, data);
 
       return res.status(200).json(updatedContent);
-    } catch (error) {
-      return res.status(500).json({ message: "Internal Server Error", error });
+    } catch (error: any) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ message: error.message || "Internal Server Error", error });
     }
   }
 }
