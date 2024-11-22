@@ -84,10 +84,9 @@ class ContentRepository implements IContentRepository {
     queryBuilder.leftJoinAndSelect("content.tags", "tag");
 
     if (tag_id) {
-      queryBuilder
-        .innerJoin("content.tags", "tag")
-        .where("tag.id = :tag_id", { tag_id });
+      queryBuilder.andWhere("tag.id = :tag_id", { tag_id });
     }
+
     if (id) {
       queryBuilder.andWhere("content.id = :id", { id });
     } else if (title) {
