@@ -1,5 +1,5 @@
 import { Content } from "../../infra/typeorm/entity/Content";
-import { Tag } from "../../infra/typeorm/entity/Tag";
+import { ITag } from "../../infra/typeorm/entity/interface/ITag";
 
 interface IcreateContentDTO {
   title: string;
@@ -7,7 +7,7 @@ interface IcreateContentDTO {
   description: string;
   link: string;
   media_type: string;
-  tags: Tag[];
+  tags: ITag[];
 }
 
 interface IContentRepository {
