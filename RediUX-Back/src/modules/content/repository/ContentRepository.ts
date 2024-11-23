@@ -6,6 +6,7 @@ import {
 } from "./interface/IContentRepository";
 import { AppDataSource } from "../../../data-source";
 import { Tag } from "../infra/typeorm/entity/Tag";
+import { AppError } from "../../../shared/erros/AppError";
 
 class ContentRepository implements IContentRepository {
   private repository: Repository<Content>;
@@ -59,11 +60,39 @@ class ContentRepository implements IContentRepository {
       description?: string;
       link?: string;
       media_type?: string;
+      tags?: Tag[];
     },
   ): Promise<Content> {
-    await this.repository.update(id, data);
+    const content = await this.repository.findOne({
+      where: { id },
+      relations: ["tags"],
+    });
 
-    return await this.repository.findOneBy({ id });
+    if (!content) {
+      throw new AppError("The content does not exist");
+    }
+
+    if (data.title !== undefined) content.title = data.title;
+    if (data.autor !== undefined) content.autor = data.autor;
+    if (data.description !== undefined) content.description = data.description;
+    if (data.link !== undefined) content.link = data.link;
+    if (data.media_type !== undefined) content.media_type = data.media_type;
+
+    if (data.tags) {
+      const tagIds = data.tags.map((tag) => tag.id); //join all ids
+
+      const tagEntities = await this.tagRepository.find({
+        where: {
+          id: In(tagIds), //TypeORM function that creates a SQL condition to search for records with 'id' present in a list.
+        },
+      });
+
+      content.tags = tagEntities;
+    }
+
+    await this.repository.save(content);
+
+    return content;
   }
 
   /* 
