@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { Content } from "../../infra/typeorm/entity/Content";
 import { IContentRepository } from "../../repository/interface/IContentRepository";
 import { AppError } from "../../../../shared/erros/AppError";
+import { Tag } from "../../infra/typeorm/entity/Tag";
 
 @injectable()
 class UpdateContentUseCase {
@@ -19,6 +20,7 @@ class UpdateContentUseCase {
       description?: string;
       link?: string;
       media_type?: string;
+      tags?: Tag[];
     },
   ): Promise<Content> {
     const contentUpdated = await this.contentRepository.update(id, data);
