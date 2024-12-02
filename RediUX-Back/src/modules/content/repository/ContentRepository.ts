@@ -47,6 +47,13 @@ class ContentRepository implements IContentRepository {
     return content;
   }
 
+  async findById(id: number): Promise<Content | null> {
+    const content = await this.repository.findOne({
+      where: { id },
+    });
+    return content;
+  }
+
   /*
   this method updates the content based on the id passed as a parameter
   */
