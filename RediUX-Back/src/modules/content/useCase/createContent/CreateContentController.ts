@@ -1,55 +1,32 @@
-import { inject, injectable } from "tsyringe";
-import { IContentRepository } from "../../repository/interface/IContentRepository";
-import { TagRepository } from "../../repository/TagRepository";
-import { AppError } from "../../../../shared/erros/AppError";
+import { Request, Response } from "express";
+import { container } from "tsyringe";
+import { CreateContentUseCase } from "./CreateContentUseCase";
+import { SchemaContent } from "../../infra/zod/SchemaContent";
 
-interface IRequest {
-  title: string;
-  autor: string;
-  description: string;
-  link: string;
-  media_type: string;
-  tags: number[];
-}
+class CreateContentController {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { title, autor, description, link, media_type, tags } =
+      SchemaContent.parse(request.body);
 
-@injectable()
-class CreateContentUseCase {
-  constructor(
-    @inject("ContentRepository")
-    private contentRepository: IContentRepository,
-    @inject("TagRepository")
-    private tagRepository: TagRepository,
-  ) {}
+    const createContentUseCase = container.resolve(CreateContentUseCase);
 
-  async execute({
-    title,
-    autor,
-    description,
-    link,
-    media_type,
-    tags,
-  }: IRequest) {
-    const tagEntities = await Promise.all(
-      tags.map(async (tag) => {
-        const tagById = await this.tagRepository.findById(tag);
-        if (!tagById) {
-          throw new AppError("Tag not found");
-        }
-        return tagById;
-      }),
-    );
+    try {
+      const content = await createContentUseCase.execute({
+        title,
+        autor,
+        description,
+        link,
+        media_type,
+        tags,
+      });
 
-    const content = await this.contentRepository.create({
-      title,
-      autor,
-      description,
-      link,
-      media_type,
-      tags: tagEntities,
-    });
-
-    return content;
+      return response.status(201).json(content);
+    } catch (error) {
+      return response.status(400).json({
+        message: error.message || "Unexpected error.",
+      });
+    }
   }
 }
 
-export { CreateContentUseCase };
+export { CreateContentController };
