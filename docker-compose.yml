@@ -9,6 +9,7 @@ services:
       - "3000:3000"
     volumes:
       - ./RediUX-Back:/usr/app
+      - /usr/app/node_modules
     networks:
       - rediux-network
     environment:
