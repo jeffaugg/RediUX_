@@ -39,7 +39,13 @@ class CreateContentUseCase {
       }),
     );
 
-    const content = await this.contentRepository.create({
+    const contentFindByTitle = await this.contentRepository.findByTitle(title);
+
+    if (contentFindByTitle) {
+      throw new AppError("Content already exists");
+    }
+
+    const newContent = await this.contentRepository.create({
       title,
       autor,
       description,
@@ -48,7 +54,7 @@ class CreateContentUseCase {
       tags: tagEntities,
     });
 
-    return content;
+    return newContent;
   }
 }
 
