@@ -1,9 +1,6 @@
 import { In, Repository } from "typeorm";
 import { Content } from "../infra/typeorm/entity/Content";
-import {
-  IContentRepository,
-  IcreateContentDTO,
-} from "./interface/IContentRepository";
+import { ContentDTO, IContentRepository } from "./interface/IContentRepository";
 import { AppDataSource } from "../../../data-source";
 import { Tag } from "../infra/typeorm/entity/Tag";
 import { AppError } from "../../../shared/erros/AppError";
@@ -26,7 +23,7 @@ class ContentRepository implements IContentRepository {
     link,
     media_type,
     tags,
-  }: IcreateContentDTO): Promise<Content> {
+  }: ContentDTO): Promise<Content> {
     const content = this.repository.create({
       title,
       autor,
@@ -47,6 +44,12 @@ class ContentRepository implements IContentRepository {
     await this.repository.save(content);
     return content;
   }
+  async findByTitle(title: string): Promise<Content | null> {
+    const content = await this.repository.findOne({
+      where: { title },
+    });
+    return content;
+  }
 
   async findById(id: number): Promise<Content | null> {
     const content = await this.repository.findOne({
@@ -59,17 +62,7 @@ class ContentRepository implements IContentRepository {
   this method updates the content based on the id passed as a parameter
   */
 
-  async update(
-    id: number,
-    data: {
-      title?: string;
-      autor?: string;
-      description?: string;
-      link?: string;
-      media_type?: string;
-      tags?: Tag[];
-    },
-  ): Promise<Content> {
+  async update(id: number, data: ContentDTO): Promise<Content> {
     const content = await this.repository.findOne({
       where: { id },
       relations: ["tags"],
@@ -79,20 +72,22 @@ class ContentRepository implements IContentRepository {
       throw new AppError("The content does not exist");
     }
 
-    if (data.title !== undefined) content.title = data.title;
-    if (data.autor !== undefined) content.autor = data.autor;
-    if (data.description !== undefined) content.description = data.description;
-    if (data.link !== undefined) content.link = data.link;
-    if (data.media_type !== undefined) content.media_type = data.media_type;
+    if (data.title) content.title = data.title;
+    if (data.autor) content.autor = data.autor;
+    if (data.description) content.description = data.description;
+    if (data.link) content.link = data.link;
+    if (data.media_type) content.media_type = data.media_type;
 
-    if (data.tags) {
-      const tagIds = data.tags.map((tag) => tag.id); //join all ids
-
+    if (data.tags?.length) {
       const tagEntities = await this.tagRepository.find({
         where: {
-          id: In(tagIds), //TypeORM function that creates a SQL condition to search for records with 'id' present in a list.
+          id: In(data.tags.map((tag) => tag.id)),
         },
       });
+
+      if (tagEntities.length !== data.tags.length) {
+        throw new AppError("Some tags were not found");
+      }
 
       content.tags = tagEntities;
     }
