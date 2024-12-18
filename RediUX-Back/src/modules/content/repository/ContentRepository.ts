@@ -121,7 +121,7 @@ class ContentRepository implements IContentRepository {
     if (id) {
       queryBuilder.andWhere("content.id = :id", { id });
     } else if (title) {
-      queryBuilder.andWhere("content.title LIKE :title", {
+      queryBuilder.andWhere("content.title ILIKE :title", {
         title: `%${title}%`,
       });
     }
