@@ -27,11 +27,17 @@ class UpdateContentUseCase {
     id: number,
     { title, autor, description, link, media_type, tags }: IRequest,
   ): Promise<Content> {
+    const content = await this.contentRepository.findById(id);
+
+    if (!content) {
+      throw new AppError("Content not found");
+    }
+
     const tagEntities = await Promise.all(
       tags.map(async (tag) => {
         const tagById = await this.tagRepository.findById(tag);
         if (!tagById) {
-          throw new AppError("Tag not found");
+          throw new AppError(`Tag not found: ${tag}`);
         }
         return tagById;
       }),
@@ -46,9 +52,6 @@ class UpdateContentUseCase {
       tags: tagEntities,
     });
 
-    if (!contentUpdated) {
-      throw new AppError("Content not found");
-    }
     return contentUpdated;
   }
 }
